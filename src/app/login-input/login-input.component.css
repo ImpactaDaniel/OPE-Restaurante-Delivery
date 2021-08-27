@@ -1,0 +1,54 @@
+
+body{
+    height: 100%;
+    width: 100%;
+}
+
+.login_page{
+    height: 100vh;
+}
+
+.box_logo{
+    background-color: #FFBA5C;
+}
+
+#img_logo{
+    height: 200px;
+    width: 200px;
+}
+
+.text_logo{
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.text_login{
+    font-size: 19px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 350px;
+    margin-top: 90px;
+}
+
+.box_btn_login{
+    margin-top: 93px;
+}
+
+.form-group{
+    width: 200px;
+}
+
+.input_email{
+    margin-top: 20px;
+}
+
+#text_relembrar{
+    font-size: 10px;
+}
+
+#btn_logar{
+    background-color: #FFBA5C;
+    border-color: #FFBA5C;
+    color: white;
+    width: 200px;
+    margin-top: 30px;
+}
