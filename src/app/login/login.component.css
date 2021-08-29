@@ -6,15 +6,14 @@ body{
 
 .login_page{
     height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .box_logo{
     background-color: #FFBA5C;
-}
-
-#img_logo{
-    height: 200px;
-    width: 200px;
+    display: flex;
+    flex-direction: column;
 }
 
 .text_logo{
@@ -33,6 +32,7 @@ body{
     margin-top: 175px;
 }
 
+
 #btn_login{
     background-color: #FFBA5C;
     border-color: #FFBA5C;
@@ -45,4 +45,48 @@ body{
     color: white;
     width: 200px;
     margin-top: 30px;
+}
+
+img {
+    max-width: 200px;
+}
+
+@media(max-width: 575px) {
+
+    img {
+        max-width: 130px;
+        margin-right: 60px;
+    }
+    .text_login{
+        margin-top: 0px;
+    }
+    .box_btn_login{
+        margin-top: 0px;
+    }
+    .box_logo{
+        height: 30vh;
+        width: 100vh;
+        flex-direction: row;
+    }
+    .text_logo{
+        font-size: 20px;
+    }
+    .text_login{
+        font-size: 16px;
+        width: 350px;
+        margin-top: 0px;
+    }
+    .box_login{
+        height: auto;
+        width: 100vh;
+        flex: 1;
+        flex-direction: column;
+    }
+    #btn_login{
+        width: 180px;
+    }
+    #btn_cadastro{
+        width: 180px;
+        margin-top: 15px;
+    }
 }
