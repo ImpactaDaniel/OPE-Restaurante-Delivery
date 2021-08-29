@@ -1,14 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
+import { Error404Component } from './error-404/error-404.component';
+import { LoginModule } from './login/login.module';
 
-const routes: Routes = [{
-  path: '',
-  component: LoginComponent
-}];
+const routes: Routes = [
+  {
+    path: '', redirectTo: 'login', pathMatch: 'full'
+  },
+  {
+    path: '**', component: Error404Component
+  }
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    LoginModule,
+    RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
