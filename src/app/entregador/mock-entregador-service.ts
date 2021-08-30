@@ -16,5 +16,6 @@ var ENTREGADOR: Entregador =
     {
         id: 1,
         name: 'Jose',
-        status: 'Testando'
+        disponibilidade: false,
+        status: 'Indisponivel'
     }

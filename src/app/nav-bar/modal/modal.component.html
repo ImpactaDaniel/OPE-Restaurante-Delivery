@@ -1,0 +1,12 @@
+<button class="btn btn-outline-primary btn-sm" (click)="open(mymodal)">Open My Modal</button>
+   
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Deseja alterar seu status?</h4>
+  </div>
+ 
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancelar</button>
+    <button type="button" class="btn btn-outline-primary" (click)="modal.close('Save click')">OK</button>
+  </div>
+</ng-template>

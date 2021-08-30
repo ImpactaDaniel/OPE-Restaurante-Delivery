@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Entregador } from '../entregador/entregador';
-import { EntregadorStatusService } from '../entregador/entregador-status-service';
+import { Entregador } from '../../entregador/entregador';
+import { EntregadorStatusService } from '../../entregador/mock-entregador-service';
 
 @Component({
   selector: 'slide-toggle-app',
@@ -9,11 +9,11 @@ import { EntregadorStatusService } from '../entregador/entregador-status-service
 export class SlideToggleComponent implements OnInit{
   
     _entregador: Entregador;
-    entregadorStatus: string;
+    entregadorStatus: Boolean;
 
     constructor(private entregadorStatusService: EntregadorStatusService) {
-        this._entregador = {id: 0, name: '', status: ''}
-        this.entregadorStatus = ''
+        this._entregador = {id: 0, name: '', disponibilidade: false, status: ''}
+        this.entregadorStatus = false
     }
 
     ngOnInit(): void {
@@ -21,7 +21,7 @@ export class SlideToggleComponent implements OnInit{
     }
 
     getStatus(): void {
-        this.entregadorStatus = this.entregadorStatusService.getStatus().status
+        this.entregadorStatus = this.entregadorStatusService.getStatus().disponibilidade
         console.log(this.entregadorStatus)
     }
 }
