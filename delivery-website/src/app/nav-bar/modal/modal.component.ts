@@ -23,13 +23,13 @@ export class ModalComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.getEntregadoresService.retrieveById(1).subscribe({
-      next: entregador => {
-        this.entregador = entregador
-        console.log(this.entregador)
-      },
-      error: err => console.log('Error', err)
-    });
+    // this.getEntregadoresService.retrieveById(1).subscribe({
+    //   next: entregador => {
+    //     this.entregador = entregador
+    //     console.log(this.entregador)
+    //   },
+    //   error: err => console.log('Error', err)
+    // });
   }
 
   // save(): void {
