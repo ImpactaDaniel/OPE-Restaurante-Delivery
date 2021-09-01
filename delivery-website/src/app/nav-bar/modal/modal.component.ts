@@ -9,46 +9,32 @@ import { ChangeStatusService } from 'src/app/entregador/services/change-status-s
   templateUrl: './modal.component.html',
 })
 export class ModalComponent implements OnInit{
-  // title = 'appBootstrap';
   
   closeResult: string = '';
 
-  // filteredCourses: Entregador[] = [];
-  // _entregador: Entregador[] = [];
-
   entregador: Entregador;
+  entregadorID: number = 1;
+  statusEntregador: string;
 
-  constructor(private modalService: NgbModal, private getEntregadoresService: ChangeStatusService) {
+  constructor(private modalService: NgbModal, private entregadoresService: ChangeStatusService) {
+    this.statusEntregador = ''
     this.entregador = {id: 0, name: '', disponibilidade: false, status: ''}
   }
 
   ngOnInit(): void {
-    // this.getEntregadoresService.retrieveById(1).subscribe({
-    //   next: entregador => {
-    //     this.entregador = entregador
-    //     console.log(this.entregador)
-    //   },
-    //   error: err => console.log('Error', err)
-    // });
   }
 
-  // save(): void {
-  //   this.getEntregadoresService.save(this.entregador).subscribe({
-  //     next: entregador => console.log("Save with success ", entregador),
-  //     error: err => console.log('Error', err)
-  //   });
-  // }
-
-  // retrieveAll(): void { 
-  //   this.getEntregadoresService.retrieveAll().subscribe({
-  //       next: entreg => {
-  //           this._entregador = entreg;
-  //           this.filteredCourses = this._entregador;
-  //           console.log(this.filteredCourses)
-  //       },
-  //       error: err => console.log('Error', err)
-  //   })
-  // }
+  sendData() {
+    this.entregadoresService.retrieveById(1).subscribe({
+      next: entregador => {
+        this.entregador = entregador
+        console.log(this.entregador)
+        this.statusEntregador = this.entregador.status
+      },
+      error: err => console.log('Error', err)
+    });
+    this.modalService.dismissAll()
+  }
 
   open(content:any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {

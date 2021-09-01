@@ -22,6 +22,5 @@ export class SlideToggleComponent implements OnInit{
 
     getStatus(): void {
         this.entregadorStatus = this.entregadorStatusService.getStatus().disponibilidade
-        console.log(this.entregadorStatus)
     }
 }

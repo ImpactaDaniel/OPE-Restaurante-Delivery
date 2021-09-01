@@ -9,22 +9,16 @@ import { Entregador } from '../entregador';
 
 export class ChangeStatusService {
 
+    entregador: Entregador;
+
     private entregadorUrl: string = 'http://localhost:3100/api/delivery'
 
-    constructor(private httpClient: HttpClient) {}
-    
-    retrieveAll(): Observable<Entregador[]> {
-        return this.httpClient.get<Entregador[]>(this.entregadorUrl);
+    constructor(private httpClient: HttpClient) {
+        this.entregador = {id: 0, name: '', disponibilidade: false, status: ''}
     }
 
     retrieveById(id: number): Observable<Entregador> {
-        return this.httpClient.get<Entregador>(`${this.entregadorUrl}/${id}`);
+        return this.httpClient.put<Entregador>(`${this.entregadorUrl}/${id}`, this.entregador);
     }
-    
-    // save(entregador: Entregador): Observable<Entregador> {
-    //     if(entregador.id) {
-    //         return this.httpClient.put<Entregador>(`${this.entregadorUrl}/${entregador.id}`, entregador)
-    //     }
-    // }
 }
 

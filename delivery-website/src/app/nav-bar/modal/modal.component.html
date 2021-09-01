@@ -1,4 +1,4 @@
-<button class="btn btn-outline-primary btn-sm" (click)="open(mymodal)">Open My Modal</button>
+<button class="btn btn-outline-primary btn-sm" (click)="open(mymodal)">{{ statusEntregador }}</button>
    
 <ng-template #mymodal let-modal>
   <div class="modal-header">
@@ -6,7 +6,7 @@
   </div>
  
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancelar</button>
-    <button type="button" class="btn btn-outline-primary" (click)="modal.close('Save click')">OK</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Cancelar</button>
+    <button type="button" class="btn btn-outline-primary" (click)="sendData()">OK</button>
   </div>
 </ng-template>
