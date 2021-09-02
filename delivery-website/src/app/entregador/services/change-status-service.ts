@@ -17,8 +17,10 @@ export class ChangeStatusService {
         this.entregador = {id: 0, name: '', disponibilidade: false, status: ''}
     }
 
-    retrieveById(id: number): Observable<Entregador> {
+    changeStatusById(id: number): Observable<Entregador> {
         return this.httpClient.put<Entregador>(`${this.entregadorUrl}/${id}`, this.entregador);
     }
+    getStatusById(id: number): Observable<Entregador> {
+        return this.httpClient.get<Entregador>(`${this.entregadorUrl}/${id}`);
+    }
 }
-

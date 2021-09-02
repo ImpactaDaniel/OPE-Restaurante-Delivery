@@ -21,18 +21,17 @@ export class ModalComponent implements OnInit{
     this.entregador = {id: 0, name: '', disponibilidade: false, status: ''}
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+      var response = await this.entregadoresService.getStatusById(1).toPromise();
+      this.statusEntregador = response.status
+      console.log(response)
   }
 
-  sendData() {
-    this.entregadoresService.retrieveById(1).subscribe({
-      next: entregador => {
-        this.entregador = entregador
-        console.log(this.entregador)
-        this.statusEntregador = this.entregador.status
-      },
-      error: err => console.log('Error', err)
-    });
+
+  async sendData() {
+    var response = await this.entregadoresService.changeStatusById(1).toPromise();
+    this.statusEntregador = response.status
+    console.log(response)
     this.modalService.dismissAll()
   }
 
