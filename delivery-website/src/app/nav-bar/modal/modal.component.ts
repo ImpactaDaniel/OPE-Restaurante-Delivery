@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
   
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { Entregador } from 'src/app/entregador/entregador';
-import { ChangeStatusService } from 'src/app/entregador/services/change-status-service';
+import { Entregador } from '../../services/entregador/entregador';
+import { ChangeStatusService } from '../../services/entregador/change-status-service';
   
 @Component({
   selector: 'modal',
@@ -23,10 +23,10 @@ export class ModalComponent implements OnInit{
 
   async ngOnInit() {
       var response = await this.entregadoresService.getStatusById(1).toPromise();
-      this.statusEntregador = response.status
       console.log(response)
+      this.statusEntregador = response.response.status
+      localStorage.setItem('deliver', JSON.stringify(response));
   }
-
 
   async sendData() {
     var response = await this.entregadoresService.changeStatusById(1).toPromise();
