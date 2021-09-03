@@ -2,3 +2,4 @@ __pycache__
 data-dev-sqlite.db
 README.md
 Makefile
+venv
