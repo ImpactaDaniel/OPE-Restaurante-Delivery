@@ -2,6 +2,7 @@ from ..models import User, UserSchema, Order, OrderSchema, role_name
 from flask import jsonify, request, current_app
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
+from flask_cors import CORS, cross_origin
 from ..decorators import manager_required
 from geopy.geocoders import Nominatim
 from .errors import bad_request
@@ -44,6 +45,7 @@ def users():
 
 @main.get('/user/change-status')
 @jwt_required()
+@cross_origin()
 def change_status():
     current_user = get_jwt_identity()
     user = User.query.filter_by(username=current_user).first()

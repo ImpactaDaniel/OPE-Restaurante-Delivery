@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-  
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
 import { Entregador } from '../../services/entregador/entregador';
 import { ChangeStatusService } from '../../services/entregador/change-status-service';
   
@@ -13,26 +13,25 @@ export class ModalComponent implements OnInit{
   closeResult: string = '';
 
   entregador: Entregador;
-  entregadorID: number = 1;
-  statusEntregador: Boolean;
+  descricaoStatus: string;
 
   constructor(private modalService: NgbModal, private entregadoresService: ChangeStatusService) {
-    this.statusEntregador = false
-    this.entregador = {name: '', disponibilidade: '', status: false}
+    this.descricaoStatus = ''
+    this.entregador = {nome: '', descricao: '', status: false}
   }
 
   async ngOnInit() {
-      var response = await this.entregadoresService.getStatusById().toPromise();
-      console.log(response)
-      this.statusEntregador = response.response.status
-      localStorage.setItem('deliver', JSON.stringify(response));
+      this.entregadoresService.login();
+      console.log(this.entregadoresService.getStatusDeliver('deliver_login'))
+      this.descricaoStatus = await this.entregadoresService.getStatusDeliver('deliver_login')
   }
 
   async sendData() {
-    // var response = await this.entregadoresService.changeStatusById().toPromise();
-    // this.statusEntregador = response.status
-    // console.log(response)
-    // this.modalService.dismissAll()
+    var response = await this.entregadoresService.changeStatusDeliver('delivery_status').toPromise();
+    console.log(response)
+    this.entregadoresService.saveLocalStorage('delivery_status', response)
+    this.descricaoStatus = this.entregadoresService.changeDescStatus(response.status)
+    this.modalService.dismissAll()
   }
 
   open(content:any) {

@@ -1,5 +1,5 @@
 export class Entregador {
-    name: string;
-    disponibilidade: string;
+    nome: string;
+    descricao: string;
     status: Boolean;
 }
