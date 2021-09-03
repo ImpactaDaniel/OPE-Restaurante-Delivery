@@ -50,7 +50,8 @@ def change_status():
     user.change_status()
     is_available = {False: 'unavailable',
                     True: 'available'}
-    return jsonify(f'The user status is now {is_available[user.status]}')
+    return jsonify({'message': f'The user status is now {is_available[user.status]}',
+                    'status': user.status})
 
 @main.post('/order/create')
 @jwt_required()
