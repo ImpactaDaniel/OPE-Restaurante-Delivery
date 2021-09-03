@@ -1,6 +1,5 @@
-export interface Entregador {
-    id: number;
+export class Entregador {
     name: string;
-    disponibilidade: Boolean;
-    status: string;
+    disponibilidade: string;
+    status: Boolean;
 }

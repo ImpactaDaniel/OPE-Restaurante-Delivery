@@ -14,17 +14,15 @@ export class ChangeStatusService {
     private entregadorUrl: string = 'http://localhost:3100/api/delivery'
 
     constructor(private httpClient: HttpClient) {
-        this.entregador = {id: 0, name: '', disponibilidade: false, status: ''}
+        this.entregador = {name: '', disponibilidade: '', status: false}
     }
 
-    changeStatusById(id: number): Observable<Entregador> {
-        return this.httpClient.put<Entregador>(`${this.entregadorUrl}/${id}`, this.entregador);
+    changeStatusById(): Observable<Entregador> {
+        return this.httpClient.put<Entregador>(`${this.entregadorUrl}`, this.entregador);
     }
-    // getStatusById(id: number): Observable<Entregador> {
-    //     return this.httpClient.get<Entregador>(`${this.entregadorUrl}/${id}`);
-    // }
-    getStatusById(id: number): Observable<APIResponse<Entregador>> {
-        return this.httpClient.get<APIResponse<Entregador>>(`${this.entregadorUrl}/${id}`);
+   
+    getStatusById(): Observable<APIResponse<Entregador>> {
+        return this.httpClient.get<APIResponse<Entregador>>(`${this.entregadorUrl}`);
     }
 }
 

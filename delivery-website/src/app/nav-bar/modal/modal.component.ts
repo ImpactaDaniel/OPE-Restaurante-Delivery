@@ -14,22 +14,22 @@ export class ModalComponent implements OnInit{
 
   entregador: Entregador;
   entregadorID: number = 1;
-  statusEntregador: string;
+  statusEntregador: Boolean;
 
   constructor(private modalService: NgbModal, private entregadoresService: ChangeStatusService) {
-    this.statusEntregador = ''
-    this.entregador = {id: 0, name: '', disponibilidade: false, status: ''}
+    this.statusEntregador = false
+    this.entregador = {name: '', disponibilidade: '', status: false}
   }
 
   async ngOnInit() {
-      var response = await this.entregadoresService.getStatusById(1).toPromise();
+      var response = await this.entregadoresService.getStatusById().toPromise();
       console.log(response)
       this.statusEntregador = response.response.status
       localStorage.setItem('deliver', JSON.stringify(response));
   }
 
   async sendData() {
-    var response = await this.entregadoresService.changeStatusById(1).toPromise();
+    var response = await this.entregadoresService.changeStatusById().toPromise();
     this.statusEntregador = response.status
     console.log(response)
     this.modalService.dismissAll()
