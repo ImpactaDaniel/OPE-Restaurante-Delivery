@@ -29,10 +29,10 @@ export class ModalComponent implements OnInit{
   }
 
   async sendData() {
-    var response = await this.entregadoresService.changeStatusById().toPromise();
-    this.statusEntregador = response.status
-    console.log(response)
-    this.modalService.dismissAll()
+    // var response = await this.entregadoresService.changeStatusById().toPromise();
+    // this.statusEntregador = response.status
+    // console.log(response)
+    // this.modalService.dismissAll()
   }
 
   open(content:any) {

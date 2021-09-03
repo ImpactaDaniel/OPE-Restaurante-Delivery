@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Entregador } from './entregador';
 
@@ -10,20 +10,27 @@ import { Entregador } from './entregador';
 export class ChangeStatusService {
 
     entregador: Entregador;
+    dataLogin: object;
 
-    private entregadorUrl: string = 'http://localhost:3100/api/delivery'
+    private changeStatusUrl: string = 'user/change-status'
 
-    constructor(private httpClient: HttpClient) {
+    constructor(@Inject('BASE_URL') private url: string, private httpClient: HttpClient) {
         this.entregador = {name: '', disponibilidade: '', status: false}
     }
 
-    changeStatusById(): Observable<Entregador> {
-        return this.httpClient.put<Entregador>(`${this.entregadorUrl}`, this.entregador);
+    changeStatusById(): Observable<APIResponse<Entregador>> {
+        return this.httpClient.put<APIResponse<Entregador>>(`${this.url + this.changeStatusUrl}`, this.entregador);
     }
    
     getStatusById(): Observable<APIResponse<Entregador>> {
-        return this.httpClient.get<APIResponse<Entregador>>(`${this.entregadorUrl}`);
+        return this.httpClient.get<APIResponse<Entregador>>(`${this.changeStatusUrl}`);
     }
+
+    // login(){
+    //     dataLogin = {} 
+    //     localStorage.setItem('deliver', JSON.stringify(response));
+    // }
+
 }
 
 
