@@ -20,7 +20,8 @@ def login():
         access_token = create_access_token(identity=username)
         return jsonify({'current_user': {
                             'username': user.username,
-                            'role': f'{user.role.name}'
+                            'role': f'{user.role.name}',
+                            'status': user.status
                             },
                         'access_token': access_token})
     return unauthorized('Invalid credentials')
