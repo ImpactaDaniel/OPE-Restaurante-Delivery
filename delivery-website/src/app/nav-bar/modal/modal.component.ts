@@ -29,30 +29,31 @@ export class ModalComponent implements OnInit{
             username : "Admin"
         }
     }
-    localStorage.setItem('deliver_auth', JSON.stringify(dataLogin));
-    this.getStatus('deliver_auth');
+    localStorage.setItem('access_token', JSON.stringify(dataLogin.access_token));
+    localStorage.setItem('deliver_status', JSON.stringify(dataLogin.current_user));
+    this.getStatus('deliver_status');
   }
 
   getStatus(key: string){
     var localstorage = localStorage.getItem(key);
     if (localstorage){
       let saida = JSON.parse(localstorage);
-      console.log(saida.current_user.status)
-      this.descricaoStatus = this.descriptionStatus(saida.current_user.status);
+      console.log(saida.status)
+      this.descricaoStatus = this.descriptionStatus(saida.status);
     }
   }
-  getTokenLogin(){
-    var localstorage = localStorage.getItem('deliver_auth')
+  getToken(){
+    var localstorage = localStorage.getItem('access_token')
     if (localstorage){
       let saida = JSON.parse(localstorage)
-      console.log(saida.access_token)
-      return saida.access_token
+      console.log(saida)
+      return saida
     }
     return
   }
 
   async sendData() {
-    let token = this.getTokenLogin()
+    let token = this.getToken()
     var response = await this.entregadoresService.changeStatusDeliver(token).toPromise();
     console.log(response)
     if (response)
