@@ -22,7 +22,7 @@ export class ModalComponent implements OnInit{
 
   async ngOnInit() {
       let dataLogin = {
-        access_token : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYzMDcyMDg4NSwianRpIjoiNGU4ZTZhZDYtYzJlMi00OWE3LTkxY2EtNzg5Yzk0MmMyM2NjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkFkbWluIiwibmJmIjoxNjMwNzIwODg1LCJleHAiOjE2MzA3NjQwODV9.p02tflJFm1yNa5PUlhfhitw7ZpguBT5nJoeLm-z6oS4",
+        access_token : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYzMDc4MTQwOSwianRpIjoiZDliMzRiMmUtOTlhNS00N2Y5LWIyMmUtZmI3YTBjNzViOWUxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkFkbWluIiwibmJmIjoxNjMwNzgxNDA5LCJleHAiOjE2MzA4MjQ2MDl9.E603QwBCyAh-GC7hRQuVyWdC_xIM6GfymqYmWp45uf0",
         current_user: {
             role : "Administrator",
             status : true,

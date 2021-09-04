@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Error404Component } from './error-404/error-404.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { SlideToggleComponent } from './nav-bar/slide-toggle/slide-toggle.component';
 import { ModalComponent } from './nav-bar/modal/modal.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -18,7 +17,6 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     Error404Component,
     NavBarComponent,
-    SlideToggleComponent,
     ModalComponent,
   ],
   imports: [
