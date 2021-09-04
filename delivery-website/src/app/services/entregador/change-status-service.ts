@@ -27,17 +27,13 @@ export class ChangeStatusService {
         }
     }
 
-    changeStatusDeliver(token: string){
-        console.log(this.getTokenDeliver('delivery_status'))
-        console.log(token)
+    changeStatusDeliver(key: string){
         let headers= new HttpHeaders();
-        headers = headers.set("Authorization", 'Bearer ' + token)
+        headers = headers.set("Authorization", 'Bearer ' + key)
         headers.append('Content-Type', 'application/json');              
         return this.httpClient.get<any>(`${this.url + this.changeStatusUrl}`, { headers: headers });
     }
-
 }
-
 
 export interface APIResponse<T> {
     response: T;

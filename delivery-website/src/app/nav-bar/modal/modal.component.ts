@@ -22,23 +22,23 @@ export class ModalComponent implements OnInit{
 
   async ngOnInit() {
       let dataLogin = {
-        access_token : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYzMDYzMTM3NSwianRpIjoiOTRlYTAzNDgtMGUzNC00NmE1LTgzODktZDMzYzhiZmMwMzdkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkFkbWluIiwibmJmIjoxNjMwNjMxMzc1LCJleHAiOjE2MzA2NzQ1NzV9.fcBWuGBvXMAwXvmoqW5DCQdGvNmw4DCK1bj0RBunH8M",
+        access_token : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYzMDcyMDg4NSwianRpIjoiNGU4ZTZhZDYtYzJlMi00OWE3LTkxY2EtNzg5Yzk0MmMyM2NjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkFkbWluIiwibmJmIjoxNjMwNzIwODg1LCJleHAiOjE2MzA3NjQwODV9.p02tflJFm1yNa5PUlhfhitw7ZpguBT5nJoeLm-z6oS4",
         current_user: {
             role : "Administrator",
             status : true,
             username : "Admin"
         }
     }
-    localStorage.setItem('deliver_auth', JSON.stringify(dataLogin))
-    this.getStatus('deliver_auth')
+    localStorage.setItem('deliver_auth', JSON.stringify(dataLogin));
+    this.getStatus('deliver_auth');
   }
 
   getStatus(key: string){
-    var localstorage = localStorage.getItem(key)
+    var localstorage = localStorage.getItem(key);
     if (localstorage){
-      let saida = JSON.parse(localstorage)
+      let saida = JSON.parse(localstorage);
       console.log(saida.current_user.status)
-      this.descricaoStatus = saida.current_user.status === true ? 'Disponível' : 'Indisponível';
+      this.descricaoStatus = this.descriptionStatus(saida.current_user.status);
     }
   }
   getTokenLogin(){
@@ -55,10 +55,15 @@ export class ModalComponent implements OnInit{
     let token = this.getTokenLogin()
     var response = await this.entregadoresService.changeStatusDeliver(token).toPromise();
     console.log(response)
-    // if (response)
-    // localStorage.setItem('deliver_status', JSON.stringify(response))
-    // this.descricaoStatus = response.
-    this.modalService.dismissAll()
+    if (response)
+      localStorage.setItem('deliver_status', JSON.stringify(response));
+      this.descricaoStatus = this.descriptionStatus(response.current_user.status);
+    this.modalService.dismissAll();
+  }
+
+  descriptionStatus(response: Boolean){
+    let description = response === true ? 'Disponível' : 'Indisponível';
+    return description
   }
 
   open(content:any) {
