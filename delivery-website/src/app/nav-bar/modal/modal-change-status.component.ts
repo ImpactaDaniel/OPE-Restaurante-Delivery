@@ -5,10 +5,10 @@ import { Entregador } from '../../services/entregador/entregador';
 import { ChangeStatusService } from '../../services/entregador/change-status-service';
   
 @Component({
-  selector: 'modal',
-  templateUrl: './modal.component.html',
+  selector: 'modal-change-status',
+  templateUrl: './modal-change-status.component.html',
 })
-export class ModalComponent implements OnInit{
+export class ModalChangeStatusComponent implements OnInit{
   
   closeResult: string = '';
 

@@ -1,0 +1,53 @@
+
+
+<mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" >
+    <mat-icon>menu</mat-icon>
+    </button>
+    <span>My App</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+    </button>
+</mat-toolbar>
+
+<div class="row">
+    <div class="col">
+        <button mat-icon-button (click)="drawer.toggle()">
+            <mat-icon>Menu</mat-icon>
+        </button>
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+        <button >
+            Sair
+        </button>
+    </div>
+</div>
+<mat-drawer-container class="example-container">
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <ul>
+            <li>
+                <a>Painel Principal</a>
+            </li>
+            <li>
+                <a>Painel Principal</a>
+            </li>
+        </ul>
+    </mat-drawer>
+    <mat-drawer opened class="example-sidenav-icon" mode="side">
+        <ul>
+            <li>
+                <a>Pai</a>
+            </li>
+            <li>
+                <a>Pai</a>
+            </li>
+        </ul>
+    </mat-drawer>
+  
+  </mat-drawer-container>
