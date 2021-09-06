@@ -1,6 +1,6 @@
 
    
-    <mat-toolbar color="primary">
+    <!-- <mat-toolbar color="primary">
         <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
@@ -12,9 +12,9 @@
         <button mat-icon-button class="logout-icon" aria-label="Example icon-button with share icon">
             <mat-icon>logout</mat-icon>
         </button>
-    </mat-toolbar>
+    </mat-toolbar> -->
     
-    <mat-drawer-container class="example-container">
+    <!-- <mat-drawer-container class="example-container">
         <mat-drawer #drawer class="example-sidenav" mode="side">
             <p>asdfasdfs</p>
             
@@ -22,10 +22,17 @@
         <mat-drawer opened class="example-sidenav-icon" mode="side">
         </mat-drawer>
       
-      </mat-drawer-container>
+      </mat-drawer-container> -->
     
-      
-    
+    <mat-sidenav-container>
+        <mat-sidenav #sidenav >
 
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+            <main>
 
-<!-- <app-sidenav></app-sidenav> -->
+            </main>
+        </mat-sidenav-content>
+        
+    </mat-sidenav-container>
