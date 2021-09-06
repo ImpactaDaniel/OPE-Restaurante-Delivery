@@ -9,9 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Error404Component } from './error-404/error-404.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { ModalChangeStatusComponent } from './nav-bar/modal/modal-change-status.component';
-import { SidenavComponent } from './navigation/sidenav.component';
+import { ModalChangeStatusComponent } from './navigation/modal-change-status/modal-change-status.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { MaterialModule } from './material.module';
 import { HeaderComponent } from './navigation/header/header.component';
@@ -21,9 +19,7 @@ import { HeaderComponent } from './navigation/header/header.component';
   declarations: [
     AppComponent,
     Error404Component,
-    NavBarComponent,
     ModalChangeStatusComponent,
-    SidenavComponent,
     HeaderComponent,
     SidenavListComponent
   ],
