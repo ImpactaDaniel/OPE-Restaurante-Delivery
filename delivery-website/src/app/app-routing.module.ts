@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Error404Component } from './error-404/error-404.component';
-import { LoginModule } from './login/login.module';
+import { LoginModule } from './auth/login.module';
 
 const routes: Routes = [
   {

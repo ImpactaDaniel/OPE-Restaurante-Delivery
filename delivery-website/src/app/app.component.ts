@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth-service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'delivery-website';
+
+  showMenu: Boolean = false;
+
+  constructor(private authService: AuthService){
+  }
+  
+  ngOnInit(){
+    this.authService.showMenu = this.showMenu;
+  }
 }

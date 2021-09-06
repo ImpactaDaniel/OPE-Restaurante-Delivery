@@ -1,8 +1,9 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="header">
     <button mat-icon-button (click)="onToggleSidenav()">
         <mat-icon>menu</mat-icon>
     </button>
-    <button class="btn btn-secundary">
+    
+    <button class="btn btn-outline-primary btn-sm btn-delivery-activate">
         Entrega Ativa
     </button>
     <span class="modal-change-status">
@@ -10,7 +11,9 @@
     </span>
     <span class="menu-user-name">Seja bem-vindo(a), NOME</span>
     
-    <button mat-icon-button class="logout-icon" aria-label="Example icon-button with share icon">
+    <button mat-icon-button class="logout-icon " (click)="logOut()">
         <mat-icon>logout</mat-icon>
     </button>
+
+    
 </mat-toolbar>
