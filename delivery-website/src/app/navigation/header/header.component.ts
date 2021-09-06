@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { AuthService } from 'src/app/services/auth-service';
+import { AuthService } from '../../services/entregador/auth-service';
 
 @Component({
   selector: 'app-header',

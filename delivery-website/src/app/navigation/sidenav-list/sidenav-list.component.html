@@ -5,8 +5,8 @@
     <a mat-list-item routerlink="/" (click)="onSidenavClose()">
         <mat-icon>Home</mat-icon><span class="nav-caption">Meu Perfil</span>
     </a>
-    <a mat-list-item routerlink="/" (click)="onSidenavClose()">
-        <mat-icon>Home</mat-icon><span class="nav-caption">Corridas do Dia</span>
+    <a mat-list-item [routerLink]="['/history']" (click)="onSidenavClose()">
+        <mat-icon>Home</mat-icon><span class="nav-caption">Histórico de Entregas</span>
     </a>
 
 </mat-nav-list>
