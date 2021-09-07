@@ -21,7 +21,7 @@ import { HeaderComponent } from './navigation/header/header.component';
     Error404Component,
     ModalChangeStatusComponent,
     HeaderComponent,
-    SidenavListComponent
+    SidenavListComponent,
   ],
   imports: [
     BrowserModule,
