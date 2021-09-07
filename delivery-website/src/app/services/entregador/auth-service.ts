@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Entregador } from './entregador';
+import { Entregador } from '../../models/entregador/entregador';
 
 @Injectable({
     providedIn: 'root'
@@ -24,6 +24,7 @@ export class AuthService {
     //   this.router.navigate(['/']);
     // }
     this.showMenu = true;
+    console.log(this.showMenu)
   }
 
   logout() {                            // {4}

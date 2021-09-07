@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/entregador/auth-service';
 import { Router } from '@angular/router';
-import { Entregador } from '../services/entregador/entregador';
 
 @Component({
   selector: 'app-login-input',
@@ -17,6 +16,6 @@ export class LoginInputComponent {
 
   LogIn(){
     this.authService.login();
-    this.router.navigate(['']);
+    this.router.navigate(['history']);
   }
 }

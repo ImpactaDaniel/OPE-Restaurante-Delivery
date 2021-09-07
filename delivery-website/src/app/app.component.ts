@@ -9,12 +9,13 @@ import { AuthService } from './services/entregador/auth-service';
 export class AppComponent {
   title = 'delivery-website';
 
-  showMenu: Boolean = false;
+  showMenu: Boolean;
 
   constructor(private authService: AuthService){
   }
   
   ngOnInit(){
-    this.authService.showMenu = this.showMenu;
+    this.showMenu = this.authService.showMenu
+    console.log(this.showMenu)
   }
 }
