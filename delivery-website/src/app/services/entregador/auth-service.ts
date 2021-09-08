@@ -12,7 +12,8 @@ export class AuthService {
 //     return this.loggedIn.asObservable(); // {2}
 //   }
 
-    showMenu: Boolean
+    showMenu: Boolean 
+
 
   constructor(
     private router: Router
@@ -24,7 +25,6 @@ export class AuthService {
     //   this.router.navigate(['/']);
     // }
     this.showMenu = true;
-    console.log(this.showMenu)
   }
 
   logout() {                            // {4}

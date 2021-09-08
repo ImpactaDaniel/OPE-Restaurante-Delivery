@@ -22,7 +22,7 @@ export class ModalChangeStatusComponent implements OnInit{
 
   async ngOnInit() {
       let dataLogin = {
-        access_token : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYzMDc4MTQwOSwianRpIjoiZDliMzRiMmUtOTlhNS00N2Y5LWIyMmUtZmI3YTBjNzViOWUxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkFkbWluIiwibmJmIjoxNjMwNzgxNDA5LCJleHAiOjE2MzA4MjQ2MDl9.E603QwBCyAh-GC7hRQuVyWdC_xIM6GfymqYmWp45uf0",
+        access_token : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYzMTE0MTM4NiwianRpIjoiZjVhZGQ1NDYtNjE0MS00NTk3LWFiMTYtZTdmMzFkYzhlMzY4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkFkbWluIiwibmJmIjoxNjMxMTQxMzg2LCJleHAiOjE2MzExODQ1ODZ9.jnyoGapDmY8jvg_rRrBxTrNGpuMdDPpCS-TJYvj-XyU",
         current_user: {
             role : "Administrator",
             status : true,

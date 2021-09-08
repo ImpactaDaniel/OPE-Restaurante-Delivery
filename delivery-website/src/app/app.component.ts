@@ -18,4 +18,6 @@ export class AppComponent {
     this.showMenu = this.authService.showMenu
     console.log(this.showMenu)
   }
+
+ 
 }

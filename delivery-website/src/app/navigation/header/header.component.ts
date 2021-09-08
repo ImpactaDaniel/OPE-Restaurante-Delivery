@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
 
   @Output() public sidenavToggle = new EventEmitter();
 
-  constructor(private authService: AuthService, private router: Router){
+  constructor(private authService: AuthService, public router: Router){
 
   }
   ngOnInit(): void {
