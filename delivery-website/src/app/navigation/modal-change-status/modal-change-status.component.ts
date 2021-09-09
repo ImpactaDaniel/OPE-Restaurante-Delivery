@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
-import { Entregador } from '../../services/entregador/entregador';
+import { Entregador } from '../../models/entregador/entregador';
 import { ChangeStatusService } from '../../services/entregador/change-status-service';
   
 @Component({
-  selector: 'modal',
-  templateUrl: './modal.component.html',
+  selector: 'modal-change-status',
+  templateUrl: './modal-change-status.component.html',
 })
-export class ModalComponent implements OnInit{
+export class ModalChangeStatusComponent implements OnInit{
   
   closeResult: string = '';
 
@@ -22,7 +22,7 @@ export class ModalComponent implements OnInit{
 
   async ngOnInit() {
       let dataLogin = {
-        access_token : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYzMDcyMDg4NSwianRpIjoiNGU4ZTZhZDYtYzJlMi00OWE3LTkxY2EtNzg5Yzk0MmMyM2NjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkFkbWluIiwibmJmIjoxNjMwNzIwODg1LCJleHAiOjE2MzA3NjQwODV9.p02tflJFm1yNa5PUlhfhitw7ZpguBT5nJoeLm-z6oS4",
+        access_token : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYzMTE0MTM4NiwianRpIjoiZjVhZGQ1NDYtNjE0MS00NTk3LWFiMTYtZTdmMzFkYzhlMzY4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkFkbWluIiwibmJmIjoxNjMxMTQxMzg2LCJleHAiOjE2MzExODQ1ODZ9.jnyoGapDmY8jvg_rRrBxTrNGpuMdDPpCS-TJYvj-XyU",
         current_user: {
             role : "Administrator",
             status : true,

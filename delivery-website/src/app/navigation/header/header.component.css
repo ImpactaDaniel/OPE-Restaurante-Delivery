@@ -1,0 +1,18 @@
+.header{
+  background-color: #FFBA5C;
+  border-bottom: solid;
+}
+
+.btn-delivery-activate{
+  margin-left: 60%;
+  
+}
+
+.modal-change-status{
+  flex: 0.5;
+}
+
+.menu-user-name{
+  flex: 1;
+}
+

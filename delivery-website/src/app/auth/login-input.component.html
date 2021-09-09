@@ -52,7 +52,7 @@
                             <div class="">
                                <a id="text_relembrar" href="/lembrar-senha">Esqueceu sua senha? Clique aqui</a>
                             </div>
-                            <button id="btn_logar" [routerLink]="['/login-input']" type="submit" class="btn btn-primary">Entrar</button>
+                            <button id="btn_logar" (click)="LogIn()" type="submit" class="btn btn-primary">Entrar</button>
                         </form>
                     </div>
                 </div>

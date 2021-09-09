@@ -2,5 +2,5 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
 @import '~font-awesome/css/font-awesome.min.css';
-html, body { height: 100%; }
+html, body { height: 100%; margin: 0;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
