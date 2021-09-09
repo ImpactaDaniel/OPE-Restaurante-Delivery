@@ -39,9 +39,20 @@
                         </div>
                     </div>
                     <div class="box_btn_login">
-                        <div class="row justify-content-center">
-                            <button [routerLink]="['/login-input']" id='btn_login' type="button" class="btn btn-primary">Login</button>
-                        </div>
+                        <form>
+                            <div class="form-group">
+                                <input type="input" class="form-control" id="exampleInputEmail1" placeholder="Usuário">
+                            </div>
+                            <div class=" form-group">
+                                <input type="input" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+                            </div>
+                            <div class="">
+                               <a id="text_relembrar" href="/#password-remember">Esqueceu sua senha? Clique aqui</a>
+                            </div>
+                            <div class="box_login">
+                                <button id="btn_login" (click)="LogIn()" type="submit" class="btn btn-primary">Entrar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 

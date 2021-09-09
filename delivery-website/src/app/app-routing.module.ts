@@ -6,7 +6,7 @@ import { DeliveryModule } from './delivery/delivery.module';
 
 const routes: Routes = [
   {
-    path: '', redirectTo: 'login-input', pathMatch: 'full'
+    path: '', redirectTo: 'login', pathMatch: 'full'
   },
   {
     path: '**', component: Error404Component
