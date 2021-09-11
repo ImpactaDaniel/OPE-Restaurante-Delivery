@@ -1,30 +1,31 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Entregador } from '../../models/entregador/entregador';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Deliveryman } from '../../models/entregador/entregador';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-//   private loggedIn = new BehaviorSubject<boolean>(false); // {1}
+  //   private loggedIn = new BehaviorSubject<boolean>(false); // {1}
 
-//   get isLoggedIn() {
-//     return this.loggedIn.asObservable(); // {2}
-//   }
+  //   get isLoggedIn() {
+  //     return this.loggedIn.asObservable(); // {2}
+  //   }
 
-    showMenu: Boolean 
+  showMenu: Boolean 
 
+  private deliveryMan: Deliveryman = new Deliveryman();
 
-  constructor(
-    private router: Router
-  ) {}
+  constructor(private router: Router) {}
 
-  login(){
+  login(user: Deliveryman){
+    console.log(user)
     // if (user.userName !== '' && user.password !== '' ) { // {3}
     //   this.loggedIn.next(true);
     //   this.router.navigate(['/']);
     // }
-    this.showMenu = true;
+    // this.showMenu = true;
   }
 
   logout() {                            // {4}

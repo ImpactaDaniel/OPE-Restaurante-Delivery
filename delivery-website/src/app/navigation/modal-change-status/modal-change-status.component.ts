@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
-import { Entregador } from '../../models/entregador/entregador';
+import { Deliveryman } from '../../models/entregador/entregador';
 import { ChangeStatusService } from '../../services/entregador/change-status-service';
   
 @Component({
@@ -12,12 +12,12 @@ export class ModalChangeStatusComponent implements OnInit{
   
   closeResult: string = '';
 
-  entregador: Entregador;
-  descricaoStatus: string;
+  deliveryMan: Deliveryman;
+  statusDescription: string;
 
   constructor(private modalService: NgbModal, private entregadoresService: ChangeStatusService) {
-    this.descricaoStatus = ''
-    this.entregador = {nome: '', descricao: '', status: false}
+    this.statusDescription = ''
+    this.deliveryMan = {name: '', lastName: '', statusDescription: '', status: false, username: '', email: '', password: ''}
   }
 
   async ngOnInit() {
@@ -38,15 +38,13 @@ export class ModalChangeStatusComponent implements OnInit{
     var localstorage = localStorage.getItem(key);
     if (localstorage){
       let saida = JSON.parse(localstorage);
-      console.log(saida.status)
-      this.descricaoStatus = this.descriptionStatus(saida.status);
+      this.statusDescription = this.descriptionStatus(saida.status);
     }
   }
   getToken(){
     var localstorage = localStorage.getItem('access_token')
     if (localstorage){
       let saida = JSON.parse(localstorage)
-      console.log(saida)
       return saida
     }
     return
@@ -55,10 +53,9 @@ export class ModalChangeStatusComponent implements OnInit{
   async sendData() {
     let token = this.getToken()
     var response = await this.entregadoresService.changeStatusDeliver(token).toPromise();
-    console.log(response)
     if (response)
       localStorage.setItem('deliver_status', JSON.stringify(response));
-      this.descricaoStatus = this.descriptionStatus(response.current_user.status);
+      this.statusDescription = this.descriptionStatus(response.current_user.status);
     this.modalService.dismissAll();
   }
 

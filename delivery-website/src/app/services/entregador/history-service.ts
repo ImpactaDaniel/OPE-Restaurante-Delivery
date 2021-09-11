@@ -1,16 +1,29 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
-import { Entregador } from '../../models/entregador/entregador';
+import { Inject, Injectable, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Deliveryman } from '../../models/entregador/entregador';
 
 @Injectable({
     providedIn: 'root'
 })
 
-export class HistoryService {
+export class HistoryService implements OnInit {
 
-    showMenu: Boolean = true
+    showMenu: Boolean;
 
-    constructor() {}
+    constructor(public router: Router) {}
 
- 
+    ngOnInit(): void {
+        this.modifyHeader()
+    }
+
+    modifyHeader() { 
+        console.log(this.router.url); 
+        if (this.router.url === '/' || this.router.url === '/login') {
+            return false;
+        } else {
+            return true;
+        }
+      }
+
 }
