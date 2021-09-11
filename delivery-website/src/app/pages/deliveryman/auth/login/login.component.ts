@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Deliveryman } from '../models/entregador/entregador';
-import { AuthService } from '../services/entregador/auth-service';
+import { Deliveryman } from '../../../../models/entregador/entregador';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   selector: 'app-login',

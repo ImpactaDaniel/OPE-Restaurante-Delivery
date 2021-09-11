@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Deliveryman } from '../../models/entregador/entregador';
+import { Deliveryman } from '../../../models/entregador/entregador';
 
 @Injectable({
     providedIn: 'root'
@@ -31,15 +31,4 @@ export class ChangeStatusService {
         headers.append('Content-Type', 'application/json');              
         return this.httpClient.get<any>(`${this.url + this.changeStatusUrl}`, { headers: headers });
     }
-}
-
-export interface APIResponse<T> {
-    response: T;
-    success: boolean;
-    notifications: Notification[];
-}
-  
-export interface Notification {
-    code: number;
-    message: string;
 }

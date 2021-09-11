@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
-import { Deliveryman } from '../../models/entregador/entregador';
-import { ChangeStatusService } from '../../services/entregador/change-status-service';
+import { Deliveryman } from '../../../models/entregador/entregador';
+import { ChangeStatusService } from '../../../pages/deliveryman/services/change-status-service';
   
 @Component({
   selector: 'modal-change-status',

@@ -1,18 +1,13 @@
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { RouterModule } from "@angular/router";
 import { DeliveryHistoryComponent } from "./delivery-history/delivery-history.component";
+import { DeliverymanRoutingModule } from "./deliveryman-routing.module";
 
 @NgModule({
-    declarations: [
-    ],
+    declarations: [DeliveryHistoryComponent],
     imports: [
         FormsModule,
-        RouterModule.forChild([
-            {
-                path: 'history', component: DeliveryHistoryComponent
-            }
-        ])
+        DeliverymanRoutingModule
     ]
 })
 

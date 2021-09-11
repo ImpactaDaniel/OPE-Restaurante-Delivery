@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from './services/entregador/auth-service';
-import { HistoryService } from './services/entregador/history-service';
+import { AuthService } from '../app/pages/deliveryman/services/auth-service';
 
 @Component({
   selector: 'app-root',

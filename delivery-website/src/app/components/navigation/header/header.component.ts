@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { HistoryService } from 'src/app/services/entregador/history-service';
-import { AuthService } from '../../services/entregador/auth-service';
+import { HistoryService } from '../../../pages/deliveryman/services/history-service';
+import { AuthService } from '../../../pages/deliveryman/services/auth-service';
 
 @Component({
   selector: 'app-header',

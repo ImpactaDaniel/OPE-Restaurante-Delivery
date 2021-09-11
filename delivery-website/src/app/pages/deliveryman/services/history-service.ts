@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Deliveryman } from '../../models/entregador/entregador';
+import { Deliveryman } from '../../../models/entregador/entregador';
 
 @Injectable({
     providedIn: 'root'
