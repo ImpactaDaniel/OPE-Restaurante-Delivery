@@ -1,8 +1,8 @@
-from ..models import User, UserSchema, Order, OrderSchema, role_name
+from ..models import User, UserSchema, Order, OrderSchema
 from flask import jsonify, request, current_app
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
-from flask_cors import CORS, cross_origin
+from flask_cors import cross_origin
 from ..decorators import manager_required
 from geopy.geocoders import Nominatim
 from .errors import bad_request
@@ -43,6 +43,15 @@ def users():
     result = users_schema.dump(users)
     return jsonify(result)
 
+@main.get('/user')
+@jwt_required()
+def user():
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(username=current_user).first()
+    user_schema = UserSchema()
+    result = user_schema.dump(user)
+    return jsonify(result)
+
 @main.get('/user/change-status')
 @jwt_required()
 @cross_origin()
@@ -52,7 +61,7 @@ def change_status():
     user.change_status()
     is_available = {False: 'unavailable',
                     True: 'available'}
-    return jsonify({'message': f'{is_available[user.status]}',
+    return jsonify({'status_name': f'{is_available[user.status]}',
                         'current_user': {
                             'username': user.username,
                             'role': f'{user.role.name}',
