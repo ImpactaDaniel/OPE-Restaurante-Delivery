@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { RouterModule } from '@angular/router';
+import { Error404Component } from './components/error-404/error-404.component';
 
 
 @NgModule({
@@ -23,9 +24,19 @@ import { RouterModule } from '@angular/router';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     RouterModule.forRoot([
       {
-        path: 'history',
+        path: '', redirectTo: '/auth/login', pathMatch: 'full'
+      },
+      {
+        path: 'auth',
+        loadChildren: () => import('./pages/deliveryman/auth/login.module').then(m => m.LoginModule)
+      },
+      {
+        path: 'deliveryman',
         loadChildren: () => import('./pages/deliveryman/delivery.module').then(m => m.DeliveryModule)
       },
+      {
+        path: '**', component: Error404Component
+      }
     ])
   ],
   exports: [
