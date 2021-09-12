@@ -22,10 +22,7 @@ export class AppComponent {
         this.router.events.subscribe(
           (event: any) => {
             if (event instanceof NavigationEnd) {
-              if (this.router.url.indexOf('auth') > 0) {
-                return s(false)
-              }
-              return s(true)
+              return s(!(this.router.url.indexOf('auth') > 0))
             }
           }
         );
