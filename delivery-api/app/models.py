@@ -30,7 +30,7 @@ class Order(db.Model):
     status = db.Column(db.String, default='done', index=True)
     created_at = db.Column(db.DateTime(), index=True, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime(), index=True, default=datetime.utcnow)
-    author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id'), default=None)
 
     def done(self):
         self.status = 'done'
@@ -43,7 +43,7 @@ class Order(db.Model):
         db.session.commit()
 
     def __repr__(self):
-        return f'<Order {self.title}>'
+        return f'{self.title}'
 
 
 class Role(db.Model):
@@ -124,7 +124,7 @@ class User(db.Model):
     motor_brand = db.Column(db.String(64), index=True)
     motor_model = db.Column(db.String(64), index=True)
     motor_year = db.Column(db.String(64), index=True)
-    orders = db.relationship('Order', backref='author', lazy='dynamic')
+    orders = db.relationship('Order', backref='author')
 
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
@@ -168,16 +168,17 @@ class User(db.Model):
 class RoleSchema(Schema):
     name = fields.String()
 
-
+class OrderHistorySchema(Schema):
+    title = fields.String()
 
 class UserSchema(Schema):
     name = fields.String()
     username = fields.String()
     cellphone = fields.String()
     role = fields.Nested(RoleSchema(only=('name',)))
+    orders = fields.List(fields.String)
     last_seen = fields.String()
     status = fields.Boolean()
-
 
 class OrderSchema(Schema):
     author = fields.Nested(UserSchema(only=('name', 'cellphone')))
