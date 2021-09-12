@@ -3,7 +3,7 @@ from flask import jsonify, request, current_app
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_cors import cross_origin
-from ..decorators import manager_required
+from ..decorators import admin_required, manager_required
 from geopy.geocoders import Nominatim
 from .errors import bad_request
 import pycep_correios
@@ -52,6 +52,17 @@ def user():
     result = user_schema.dump(user)
     return jsonify(result)
 
+@main.post('/user/<username>')
+@jwt_required()
+@admin_required
+def search_user(username):
+    user = User.query.filter_by(username=username).first()
+    if user:
+        user_schema = UserSchema()
+        result = user_schema.dump(user)
+        return jsonify(result)
+    return jsonify('User not found')
+
 @main.get('/user/change-status')
 @jwt_required()
 @cross_origin()
@@ -78,7 +89,7 @@ def order():
     except:
         return bad_request('Invalid arguments')
     user = User.query.filter_by(username=get_jwt_identity()).first()
-    order = Order(author=user, title=payload['title'],
+    order = Order(author=user,title=payload['title'],
                   description=payload['description'], price=payload['price'],
                   payment=payload['payment'], address=payload['address'],
                   status=payload['status'])
