@@ -17,8 +17,8 @@ class Config:
         pass
 
 class DevelopmentConfig(Config):
-    EMAIL_FROM =  'efgs96@gmail.com'
-    EMAIL_PASSWORD = 'Murilo3012'
+    EMAIL_FROM =  'noreply.restaurante.mataburro@gmail.com'
+    EMAIL_PASSWORD = 'TCC!mp4ct4'
     FLASK_DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URI') or \
         f'sqlite:///{os.path.join(basedir, "data-dev-sqlite.db")}'
