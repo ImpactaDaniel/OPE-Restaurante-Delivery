@@ -28,7 +28,7 @@ import { Error404Component } from './components/error-404/error-404.component';
       },
       {
         path: 'auth',
-        loadChildren: () => import('./pages/deliveryman/auth/login.module').then(m => m.LoginModule)
+        loadChildren: () => import('./pages/deliveryman/auth/auth.module').then(m => m.AuthModule)
       },
       {
         path: 'deliveryman',
