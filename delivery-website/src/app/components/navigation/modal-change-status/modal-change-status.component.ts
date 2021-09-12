@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
-import { Deliveryman } from '../../../models/entregador/entregador';
+import { Deliveryman } from '../../../models/deliveryman/deliveryman';
 import { ChangeStatusService } from '../../../pages/deliveryman/services/change-status-service';
   
 @Component({

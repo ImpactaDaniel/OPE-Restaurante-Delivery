@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Deliveryman } from '../../../models/entregador/entregador';
+import { Deliveryman } from '../../../models/deliveryman/deliveryman';
 
 @Injectable({
     providedIn: 'root'
