@@ -9,21 +9,12 @@ import { Deliveryman } from '../../../models/deliveryman/deliveryman';
 
 export class HistoryService implements OnInit {
 
-    showMenu: Boolean;
 
     constructor(public router: Router) {}
 
     ngOnInit(): void {
-        this.modifyHeader()
     }
 
-    modifyHeader() { 
-        console.log(this.router.url); 
-        if (this.router.url === '/' || this.router.url === '/login') {
-            return false;
-        } else {
-            return true;
-        }
-      }
+ 
 
 }

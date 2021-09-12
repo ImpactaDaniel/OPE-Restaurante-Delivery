@@ -10,7 +10,6 @@ import { AuthService } from '../../../pages/deliveryman/services/auth-service';
 })
 export class HeaderComponent implements OnInit {
 
-  showMenu: Boolean;
 
   @Output() public sidenavToggle = new EventEmitter();
 
@@ -18,7 +17,6 @@ export class HeaderComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    console.log(this.showMenu)
   }
 
   public onToggleSidenav = () => {
@@ -27,7 +25,6 @@ export class HeaderComponent implements OnInit {
 
   logOut() {
     this.authService.logout()
-    console.log(this.showMenu)
   }
 
 }

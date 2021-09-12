@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit{
       username: [''],
       password: ['']
     });
-    // console.log(this.loginForm)
   }
   
   LogIn(){
@@ -31,8 +30,6 @@ export class LoginComponent implements OnInit{
     this.deliveryMan.password = this.loginForm.get('password')?.value
     this.authService.login(this.deliveryMan)
 
-    // console.log(this.loginForm)
-    // this.authService.login();
     // this.router.navigate(['history']);
   }
 }

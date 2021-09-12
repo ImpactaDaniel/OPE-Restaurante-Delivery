@@ -2,18 +2,18 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Deliveryman } from '../../../models/deliveryman/deliveryman';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-  //   private loggedIn = new BehaviorSubject<boolean>(false); // {1}
+    private loggedIn = new BehaviorSubject<boolean>(false); 
 
-  //   get isLoggedIn() {
-  //     return this.loggedIn.asObservable(); // {2}
-  //   }
+    get isLoggedIn() {
+      return this.loggedIn.asObservable(); 
+    }
 
-  showMenu: Boolean 
 
   private deliveryMan: Deliveryman = new Deliveryman();
 
@@ -21,16 +21,14 @@ export class AuthService {
 
   login(user: Deliveryman){
     console.log(user)
-    // if (user.userName !== '' && user.password !== '' ) { // {3}
+    // if (user.userName !== '' && user.password !== '' ) { 
     //   this.loggedIn.next(true);
     //   this.router.navigate(['/']);
     // }
-    // this.showMenu = true;
   }
 
-  logout() {                            // {4}
+  logout() {                            
     // this.loggedIn.next(false);
     this.router.navigate(['/']);
-    this.showMenu = false;
   }
 }

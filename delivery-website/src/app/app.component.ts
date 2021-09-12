@@ -12,9 +12,8 @@ export class AppComponent {
 
   constructor(private router: Router){ }
   
-  async ngOnInit(){
+  async ngAfterContentChecked(){
     this.showMenu = await this.showMenuEvent()
-    console.log(this.showMenu)
   }
 
   async showMenuEvent(): Promise<Boolean> {
