@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Entregador } from '../../models/entregador/entregador';
+import { Deliveryman } from '../../../models/deliveryman/deliveryman';
 
 @Injectable({
     providedIn: 'root'
@@ -8,14 +8,12 @@ import { Entregador } from '../../models/entregador/entregador';
 
 export class ChangeStatusService {
 
-    entregador: Entregador;
-    dataLogin: object;
-    entregadorStatus: Boolean;
+    deliveryMan: Deliveryman;
 
     private changeStatusUrl: string = 'user/change-status'
 
     constructor(@Inject('BASE_URL') private url: string, private httpClient: HttpClient) {
-        this.entregador = {nome: '', descricao: '', status: false}
+        this.deliveryMan = {name: '', lastName: '', statusDescription: '', status: false, username: '', email: '', password: ''}
     }
 
     async getTokenDeliver(key: string) {
@@ -33,15 +31,4 @@ export class ChangeStatusService {
         headers.append('Content-Type', 'application/json');              
         return this.httpClient.get<any>(`${this.url + this.changeStatusUrl}`, { headers: headers });
     }
-}
-
-export interface APIResponse<T> {
-    response: T;
-    success: boolean;
-    notifications: Notification[];
-}
-  
-export interface Notification {
-    code: number;
-    message: string;
 }

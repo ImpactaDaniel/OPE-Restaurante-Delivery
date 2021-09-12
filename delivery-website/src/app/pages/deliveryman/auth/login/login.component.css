@@ -29,15 +29,27 @@ body{
 }
 
 .box_btn_login{
-    margin-top: 175px;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
 }
 
+.form-group{
+    width: 200px;
+    margin: 10px;
+}
+
+.box_login {
+    display: flex;
+    justify-content: center;
+}
 
 #btn_login{
     background-color: #FFBA5C;
     border-color: #FFBA5C;
     color: white;
     width: 200px;
+ 
 }
 #btn_cadastro{
     background-color: #C5AC99;
@@ -45,6 +57,10 @@ body{
     color: white;
     width: 200px;
     margin-top: 30px;
+}
+
+#text_remember {
+    font-size: 12px;
 }
 
 img {

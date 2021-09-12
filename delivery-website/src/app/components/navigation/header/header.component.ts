@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/entregador/auth-service';
+import { HistoryService } from '../../../pages/deliveryman/services/history-service';
+import { AuthService } from '../../../pages/deliveryman/services/auth-service';
 
 @Component({
   selector: 'app-header',
@@ -9,12 +10,15 @@ import { AuthService } from '../../services/entregador/auth-service';
 })
 export class HeaderComponent implements OnInit {
 
+  showMenu: Boolean;
+
   @Output() public sidenavToggle = new EventEmitter();
 
   constructor(private authService: AuthService, public router: Router){
 
   }
   ngOnInit(): void {
+    console.log(this.showMenu)
   }
 
   public onToggleSidenav = () => {
@@ -23,7 +27,7 @@ export class HeaderComponent implements OnInit {
 
   logOut() {
     this.authService.logout()
+    console.log(this.showMenu)
   }
-
 
 }

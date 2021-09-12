@@ -1,40 +1,39 @@
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Error404Component } from './error-404/error-404.component';
-import { ModalChangeStatusComponent } from './navigation/modal-change-status/modal-change-status.component';
-import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
-import { MaterialModule } from './material.module';
-import { HeaderComponent } from './navigation/header/header.component';
+import { RouterModule } from '@angular/router';
+import { Error404Component } from './components/error-404/error-404.component';
+import { NavigationModule } from './components/navigation/navigation.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    Error404Component,
-    ModalChangeStatusComponent,
-    HeaderComponent,
-    SidenavListComponent,
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    MaterialModule
+    NavigationModule,
+    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    RouterModule.forRoot([
+      {
+        path: '', redirectTo: '/auth/login', pathMatch: 'full'
+      },
+      {
+        path: 'auth',
+        loadChildren: () => import('./pages/deliveryman/auth/auth.module').then(m => m.AuthModule)
+      },
+      {
+        path: 'deliveryman',
+        loadChildren: () => import('./pages/deliveryman/delivery.module').then(m => m.DeliveryModule)
+      },
+      {
+        path: '**', component: Error404Component
+      }
+    ])
   ],
-  exports: [
-    BrowserAnimationsModule,
-  ],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent]
 })

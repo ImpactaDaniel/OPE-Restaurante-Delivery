@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from './services/entregador/auth-service';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,17 +7,26 @@ import { AuthService } from './services/entregador/auth-service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'delivery-website';
 
   showMenu: Boolean;
 
-  constructor(private authService: AuthService){
-  }
+  constructor(private router: Router){ }
   
-  ngOnInit(){
-    this.showMenu = this.authService.showMenu
+  async ngOnInit(){
+    this.showMenu = await this.showMenuEvent()
     console.log(this.showMenu)
   }
 
- 
+  async showMenuEvent(): Promise<Boolean> {
+    return new Promise((s, f) => {
+        this.router.events.subscribe(
+          (event: any) => {
+            if (event instanceof NavigationEnd) {
+              return s(!(this.router.url.indexOf('auth') > 0))
+            }
+          }
+        );
+    })
+  }
+
 }
