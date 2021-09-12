@@ -1,4 +1,5 @@
 from ..decorators import admin_required
+from flask_cors import cross_origin
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from .errors import unauthorized, bad_request, forbidden, not_found
@@ -11,6 +12,7 @@ from . import auth
 
 
 @auth.post('/login')
+@cross_origin()
 def login():
     username = request.json.get('username', None)
     password = request.json.get('password', None)

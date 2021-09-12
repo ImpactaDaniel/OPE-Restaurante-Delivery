@@ -67,7 +67,7 @@ img {
     max-width: 200px;
 }
 
-@media(max-width: 575px) {
+@media(max-width: 650px) {
 
     img {
         max-width: 130px;

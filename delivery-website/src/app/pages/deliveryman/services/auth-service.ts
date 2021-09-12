@@ -1,34 +1,40 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Deliveryman } from '../../../models/deliveryman/deliveryman';
-import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-    private loggedIn = new BehaviorSubject<boolean>(false); 
+  
+  private authenticationUrl: string = 'auth/login'
 
-    get isLoggedIn() {
-      return this.loggedIn.asObservable(); 
+  constructor(@Inject('BASE_URL') private url: string,private http: HttpClient, private router: Router) {}
+
+  async login(user: Deliveryman){
+
+    if (user.username !== '' && user.password !== '' ) { 
+      console.log(user)
+
+      let result = await this.http.post<any>(`${this.url + this.authenticationUrl}`, user).toPromise()
+      console.log(result)
+      if (result && result.access_token) {
+        localStorage.setItem('access_token', JSON.stringify(result.access_token));
+
+        localStorage.setItem('deliveryman', JSON.stringify(result.current_user));
+      }
+      this.router.navigate(['/deliveryman/history']);
     }
-
-
-  private deliveryMan: Deliveryman = new Deliveryman();
-
-  constructor(private router: Router) {}
-
-  login(user: Deliveryman){
-    console.log(user)
-    // if (user.userName !== '' && user.password !== '' ) { 
-    //   this.loggedIn.next(true);
-    //   this.router.navigate(['/']);
-    // }
   }
 
-  logout() {                            
-    // this.loggedIn.next(false);
+  descriptionStatus(response: Boolean){
+    let description = response === true ? 'Disponível' : 'Indisponível';
+    return description
+  }
+
+  logout() {      
+    localStorage.clear()                      
     this.router.navigate(['/']);
   }
 }
