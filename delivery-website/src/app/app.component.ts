@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../app/pages/deliveryman/services/auth-service';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,22 +7,29 @@ import { AuthService } from '../app/pages/deliveryman/services/auth-service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'delivery-website';
 
   showMenu: Boolean;
-  router: Router;
 
-  constructor(private authService: AuthService){
-  }
+  constructor(private router: Router){ }
   
-  ngOnInit(){
-    this.showHeader()
-    // console.log(this.showMenu)
+  async ngOnInit(){
+    this.showMenu = await this.showMenuEvent()
+    console.log(this.showMenu)
   }
 
-  async showHeader() {
-    this.showMenu = this.authService.showMenu
+  async showMenuEvent(): Promise<Boolean> {
+    return new Promise((s, f) => {
+        this.router.events.subscribe(
+          (event: any) => {
+            if (event instanceof NavigationEnd) {
+              if (this.router.url.indexOf('auth') > 0) {
+                return s(false)
+              }
+              return s(true)
+            }
+          }
+        );
+    })
   }
-
 
 }
