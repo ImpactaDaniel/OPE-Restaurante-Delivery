@@ -1,36 +1,32 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Deliveryman } from '../../../models/deliveryman/deliveryman';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-  //   private loggedIn = new BehaviorSubject<boolean>(false); // {1}
+  
+  private authenticationUrl: string = 'auth/login'
 
-  //   get isLoggedIn() {
-  //     return this.loggedIn.asObservable(); // {2}
-  //   }
+  constructor(@Inject('BASE_URL') private url: string,private http: HttpClient, private router: Router) {}
 
-  showMenu: Boolean 
+  async login(user: Deliveryman){
 
-  private deliveryMan: Deliveryman = new Deliveryman();
+    if (user.username !== '' && user.password !== '' ) { 
+      let result = await this.http.post<any>(`${this.url + this.authenticationUrl}`, user).toPromise()
+      if (result && result.access_token) {
+        localStorage.setItem('access_token', JSON.stringify(result.access_token));
 
-  constructor(private router: Router) {}
-
-  login(user: Deliveryman){
-    console.log(user)
-    // if (user.userName !== '' && user.password !== '' ) { // {3}
-    //   this.loggedIn.next(true);
-    //   this.router.navigate(['/']);
-    // }
-    // this.showMenu = true;
+        localStorage.setItem('deliveryman', JSON.stringify(result.current_user));
+      }
+      this.router.navigate(['/deliveryman/history']);
+    }
   }
 
-  logout() {                            // {4}
-    // this.loggedIn.next(false);
+  logout() {      
+    localStorage.clear()                      
     this.router.navigate(['/']);
-    this.showMenu = false;
   }
 }

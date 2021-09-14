@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { HistoryService } from '../../../pages/deliveryman/services/history-service';
 import { AuthService } from '../../../pages/deliveryman/services/auth-service';
 
 @Component({
@@ -10,24 +9,32 @@ import { AuthService } from '../../../pages/deliveryman/services/auth-service';
 })
 export class HeaderComponent implements OnInit {
 
-  showMenu: Boolean;
+  userNameLogged: string;
 
   @Output() public sidenavToggle = new EventEmitter();
 
   constructor(private authService: AuthService, public router: Router){
 
   }
+
   ngOnInit(): void {
-    console.log(this.showMenu)
+    this.getUserNameLogged()
   }
 
   public onToggleSidenav = () => {
     this.sidenavToggle.emit()
   }
 
+  getUserNameLogged() {
+    let localstorage = localStorage.getItem('deliveryman')
+    if (localstorage) {
+      let userData = JSON.parse(localstorage)
+      this.userNameLogged = userData.username
+    }
+  }
+
   logOut() {
     this.authService.logout()
-    console.log(this.showMenu)
   }
 
 }

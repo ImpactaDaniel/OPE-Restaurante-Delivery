@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Deliveryman } from '../../../../models/deliveryman/deliveryman';
 import { AuthService } from '../../services/auth-service';
@@ -20,19 +20,14 @@ export class LoginComponent implements OnInit{
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      username: [''],
-      password: ['']
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
-    // console.log(this.loginForm)
   }
   
   LogIn(){
     this.deliveryMan.username = this.loginForm.get('username')?.value
     this.deliveryMan.password = this.loginForm.get('password')?.value
     this.authService.login(this.deliveryMan)
-
-    // console.log(this.loginForm)
-    // this.authService.login();
-    // this.router.navigate(['history']);
   }
 }

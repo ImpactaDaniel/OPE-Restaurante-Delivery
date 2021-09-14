@@ -33,15 +33,30 @@
                         <form [formGroup]="loginForm" (ngSubmit)="LogIn()">
                             <div class="form-group">
                                 <input formControlName="username" type="text" class="form-control" id="user" placeholder="Usuário">
+                                <div *ngIf="loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)">
+                                    <small
+                                        *ngIf="loginForm.controls['username'].errors?.required"
+                                        class="text-danger d-block mt-2">
+                                        Username é obrigatório!
+                                    </small>
+                                </div>
+                                
                             </div>
                             <div class="form-group">
                                 <input formControlName="password" type="password" class="form-control" id="password" placeholder="Senha">
+                                <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+                                    <small
+                                        *ngIf="loginForm.controls['password'].errors?.required"
+                                        class="text-danger d-block mt-2">
+                                        Password é obrigatório!
+                                    </small>
+                                </div>
                             </div>
                             <div class="form-group">
                                <a id="text_remember" href="/#password-remember">Esqueceu sua senha? Clique aqui</a>
                             </div>
                             <div class="form-group ">
-                                <button id="btn_login" type="submit" class="btn btn-primary">Entrar</button>
+                                <button [disabled]="loginForm.invalid" id="btn_login" type="submit" class="btn btn-primary">Entrar</button>
                             </div>
                         </form>
                     </div>
