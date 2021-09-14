@@ -26,7 +26,6 @@ export class ModalChangeStatusComponent implements OnInit{
     if (localstorage){
       let saida = JSON.parse(localstorage);
       this.statusDescription = this.descriptionStatus(saida.status);
-      console.log(this.statusDescription)
     }
   }
 
@@ -44,7 +43,7 @@ export class ModalChangeStatusComponent implements OnInit{
     var response = await this.deliverymanService.changeDeliverymanStatus(token).toPromise();
     if (response)
       localStorage.setItem('deliveryman', JSON.stringify(response.current_user));
-      this.statusDescription = this.descriptionStatus(response.status);
+      this.statusDescription = this.descriptionStatus(response.current_user.status);
     this.modalService.dismissAll();
   }
 

@@ -15,10 +15,7 @@ export class AuthService {
   async login(user: Deliveryman){
 
     if (user.username !== '' && user.password !== '' ) { 
-      console.log(user)
-
       let result = await this.http.post<any>(`${this.url + this.authenticationUrl}`, user).toPromise()
-      console.log(result)
       if (result && result.access_token) {
         localStorage.setItem('access_token', JSON.stringify(result.access_token));
 
@@ -26,11 +23,6 @@ export class AuthService {
       }
       this.router.navigate(['/deliveryman/history']);
     }
-  }
-
-  descriptionStatus(response: Boolean){
-    let description = response === true ? 'Disponível' : 'Indisponível';
-    return description
   }
 
   logout() {      
