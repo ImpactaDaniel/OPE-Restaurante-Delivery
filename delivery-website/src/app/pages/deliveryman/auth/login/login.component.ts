@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit{
   
   private deliveryMan: Deliveryman = new Deliveryman();
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router){
+  constructor(private authService: AuthService, private formBuilder: FormBuilder){
   }
 
   ngOnInit(): void {
@@ -28,6 +28,6 @@ export class LoginComponent implements OnInit{
   LogIn(){
     this.deliveryMan.username = this.loginForm.get('username')?.value
     this.deliveryMan.password = this.loginForm.get('password')?.value
-    this.authService.login(this.deliveryMan)
+    this.authService.authenticate(this.deliveryMan)
   }
 }

@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { Error404Component } from './components/error-404/error-404.component';
 import { NavigationModule } from './components/navigation/navigation.module';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { TokenInterceptor } from './middlewares/TokenInterceptor';
 
 
 @NgModule({
@@ -36,7 +35,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     ])
   ],
   exports: [],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
