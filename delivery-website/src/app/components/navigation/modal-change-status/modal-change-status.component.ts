@@ -22,7 +22,7 @@ export class ModalChangeStatusComponent implements OnInit{
     this.getStatusDescriptionToHeader();
   }
 
-  getStatusDescriptionToHeader(): void {
+  private getStatusDescriptionToHeader(): void {
     var data = localStorage.getItem('deliveryman');
     if (data){
       let saida = JSON.parse(data);

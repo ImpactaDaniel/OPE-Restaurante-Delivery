@@ -12,8 +12,9 @@ export class AuthService {
   
   tokenKey = btoa('access_token')
   private authenticationUrl: string = 'auth/login'
+  private passwordChangeUrl: string = 'auth/change-password'
 
-  constructor(@Inject('BASE_URL') private url: string,private http: HttpClient, private router: Router) {}
+  constructor(@Inject('BASE_URL') private url: string, private http: HttpClient, private router: Router) {}
 
   public isAuthenticated(): boolean {
     let token = this.getToken();
@@ -33,6 +34,16 @@ export class AuthService {
         this.saveUserData(result.current_user);
       }
       this.router.navigate(['/deliveryman/history']);
+    }
+  }
+
+  public async passwordChange(user: Deliveryman): Promise<any> {
+    if (user.username !== '' && user.current_password !== '' && user.new_password !== '') {
+      let result = await this.http.post<any>(`${this.url + this.passwordChangeUrl}`, user).toPromise()
+      if (result) {
+        return result
+      }
+      return null
     }
   }
 

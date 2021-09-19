@@ -74,6 +74,7 @@ def delete():
 
 @auth.post('/change-password')
 @jwt_required()
+@cross_origin()
 def change_pasword():
     username = request.json.get('username', None)
     current_password = request.json.get('current_password', None)
