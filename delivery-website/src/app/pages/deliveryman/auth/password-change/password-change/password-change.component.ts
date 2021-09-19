@@ -51,9 +51,5 @@ export class PasswordChangeComponent implements OnInit {
       this.messageAlert = mgsBr
     }
   }
-
-  // public getMessageAlert(): void {
-  //   this.
-  // }
-
+  
 }
