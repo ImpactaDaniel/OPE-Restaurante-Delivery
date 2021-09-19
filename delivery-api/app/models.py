@@ -124,6 +124,7 @@ class User(db.Model):
     motor_brand = db.Column(db.String(64), index=True)
     motor_model = db.Column(db.String(64), index=True)
     motor_year = db.Column(db.String(64), index=True)
+    is_first_login = db.Column(db.Boolean, default=True)
     orders = db.relationship('Order', backref='author')
 
     def __init__(self, **kwargs):
