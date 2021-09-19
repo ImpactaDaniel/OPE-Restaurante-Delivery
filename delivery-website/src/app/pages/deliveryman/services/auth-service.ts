@@ -52,7 +52,7 @@ export class AuthService {
     this.router.navigate(['/']);
   }
 
-  private saveToken(token: any): void {
+  private saveToken(token: TokenResponse): void {
     let data = JSON.stringify(token)
     localStorage.setItem(this.tokenKey, btoa(data));
   }
