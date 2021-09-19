@@ -1,3 +1,4 @@
+from flask_jwt_extended.utils import set_access_cookies
 from ..decorators import admin_required
 from flask_cors import cross_origin
 from flask_jwt_extended import create_access_token
@@ -19,13 +20,15 @@ def login():
     user = User.query.filter_by(username=username).first()
     if user is not None and user.verify_password(password):
         user.ping()
-        access_token = create_access_token(identity=username)
-        return jsonify({'current_user': {
+        access_token = create_access_token(identity=user.username)
+        response = jsonify({'current_user': {
                             'username': user.username,
                             'role': f'{user.role.name}',
                             'status': user.status
                             },
                         'access_token': access_token})
+        set_access_cookies(response, access_token)
+        return response
     return unauthorized('Invalid credentials')
 
 @auth.post('/register')
