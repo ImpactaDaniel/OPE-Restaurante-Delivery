@@ -6,4 +6,6 @@ export class Deliveryman {
     username: string;
     email: string;
     password: string;
+    current_password: string;
+    new_password: string;
 }

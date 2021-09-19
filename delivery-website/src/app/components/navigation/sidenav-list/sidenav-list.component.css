@@ -16,5 +16,5 @@ a:hover, a:active {
 
 a.menu-logout {
     position: relative;
-    margin-top: calc(100vh - 85%);
+    margin-top: calc(100vh - 135%);
 }

@@ -24,7 +24,8 @@ def login():
         response = jsonify({'current_user': {
                             'username': user.username,
                             'role': f'{user.role.name}',
-                            'status': user.status
+                            'status': user.status,
+                            'is_first_login': user.is_first_login
                             },
                         'access_token': access_token})
         set_access_cookies(response, access_token)
@@ -77,6 +78,7 @@ def delete():
 
 @auth.post('/change-password')
 @jwt_required()
+@cross_origin()
 def change_pasword():
     username = request.json.get('username', None)
     current_password = request.json.get('current_password', None)
@@ -85,6 +87,7 @@ def change_pasword():
     if username == get_jwt_identity():
         if user is not None and user.verify_password(current_password):
             user.password = new_password
+            user.is_first_login = False
             db.session.add(user)
             db.session.commit()
             return jsonify('Password changed successfully')
