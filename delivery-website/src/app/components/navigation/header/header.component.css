@@ -4,16 +4,25 @@
 }
 
 .btn-delivery-activate{
-  margin-left: 60%;
-  
+flex: 4;
 }
 
 .modal-change-status{
-  flex: 0.5;
+  flex: 1;
 }
 
 .menu-user-name{
   flex: 1;
   font-size: 16px;
+}
+
+@media (max-width: 525px) {
+  #btn-logout, #btn-delivery-activate {
+    display: none;
+  }
+  .menu-user-name{
+    flex: 1;
+    font-size: 12px;
+  }
 }
 
