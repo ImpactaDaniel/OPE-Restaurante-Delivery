@@ -23,17 +23,14 @@ export class ModalChangeStatusComponent implements OnInit{
   }
 
   private getStatusDescriptionToHeader(): void {
-    var data = localStorage.getItem('deliveryman');
-    if (data){
-      let saida = JSON.parse(data);
-      this.statusDescription = this.descriptionStatus(saida.status);
-    }
+    var data = this.authService.getLocalstorageData('deliveryman');
+    this.statusDescription = this.descriptionStatus(data.status);
   }
 
   async sendData() {
     var response = await this.changeStatusService.changeDeliverymanStatus().toPromise();
     if (response)
-      this.authService.saveUserData(response.current_user);
+      this.authService.saveLocalstorageData('deliveryman', response.current_user);
       this.statusDescription = this.descriptionStatus(response.current_user.status);
     this.modalService.dismissAll();
   }

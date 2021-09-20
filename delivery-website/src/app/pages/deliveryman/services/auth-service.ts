@@ -26,14 +26,24 @@ export class AuthService {
     return true
   }
 
-  public async authenticate(user: Deliveryman): Promise<void> {
+  public isFirstLogin(): boolean {
+    let data = this.getLocalstorageData('deliveryman')
+    console.log(data)
+    return data.is_first_login
+  }
+
+  public async authenticate(user: Deliveryman): Promise<any> {
     if (user.username !== '' && user.password !== '' ) { 
       let result = await this.http.post<any>(`${this.url + this.authenticationUrl}`, user).toPromise()
+      console.log(result)
       if (result && result.access_token) {
+        console.log(result)
         this.saveToken(result.access_token);
-        this.saveUserData(result.current_user);
+        this.saveLocalstorageData('deliveryman', result.current_user);
+        this.router.navigate(['/deliveryman/history']);
+        return false
       }
-      this.router.navigate(['/deliveryman/history']);
+      return true
     }
   }
 
@@ -57,19 +67,27 @@ export class AuthService {
     localStorage.setItem(this.tokenKey, btoa(data));
   }
 
-  public saveUserData(data: string): void {
-    localStorage.setItem('deliveryman', JSON.stringify(data));
+  public saveLocalstorageData(key: string, data: string): void {
+    localStorage.setItem(key, JSON.stringify(data));
+  }
+
+  public getLocalstorageData(key: string): any {
+    let data = localStorage.getItem(key);
+    if (data && data !== ''){
+      return JSON.parse(data)
+    }
+    return data
   }
 
   public getToken(): any {
-    let data = this.getFromLocalStorage(this.tokenKey)
+    let data = this.getTokenFromLocalStorage(this.tokenKey)
     if (data && data !== ''){
       return JSON.parse(data)
     }
     return null
   }
 
-  private getFromLocalStorage(key: string): any{
+  private getTokenFromLocalStorage(key: string): any{
     let value = localStorage.getItem(key);
     if (!value || value === '')
       return value

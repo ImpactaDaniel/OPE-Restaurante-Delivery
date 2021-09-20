@@ -11,6 +11,8 @@ import { AuthService } from '../../services/auth-service';
 })
 export class LoginComponent implements OnInit{
 
+  public messageAlert: string = ''
+  public message: boolean = false
   loginForm: FormGroup;
   
   private deliveryMan: Deliveryman = new Deliveryman();
@@ -25,9 +27,19 @@ export class LoginComponent implements OnInit{
     });
   }
   
-  LogIn(){
+  async LogIn(){
     this.deliveryMan.username = this.loginForm.get('username')?.value
     this.deliveryMan.password = this.loginForm.get('password')?.value
-    this.authService.authenticate(this.deliveryMan)
+    let response = await this.authService.authenticate(this.deliveryMan)
+    console.log(response)
+    this.validateMessage(response)
   }
+
+  private validateMessage(mgs: boolean) {
+    this.message = mgs
+    if (mgs) {
+      this.messageAlert = 'Usuário ou senha incorretos.'
+    }
+  }
+
 }

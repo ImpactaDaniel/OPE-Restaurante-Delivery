@@ -37,7 +37,7 @@
                                     <small
                                         *ngIf="loginForm.controls['username'].errors?.required"
                                         class="text-danger d-block mt-2">
-                                        Username é obrigatório!
+                                        Usuário é obrigatório.
                                     </small>
                                 </div>
                                 
@@ -48,8 +48,16 @@
                                     <small
                                         *ngIf="loginForm.controls['password'].errors?.required"
                                         class="text-danger d-block mt-2">
-                                        Password é obrigatório!
+                                        Senha é obrigatória.
                                     </small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row justify-content-center">
+
+                                    <div *ngIf="message" class="alert alert-warning">
+                                        {{ messageAlert }}
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">

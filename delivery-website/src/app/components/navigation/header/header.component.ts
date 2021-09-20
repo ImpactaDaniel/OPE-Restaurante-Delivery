@@ -26,11 +26,8 @@ export class HeaderComponent implements OnInit {
   }
 
   getUserNameLogged() {
-    let localstorage = localStorage.getItem('deliveryman')
-    if (localstorage) {
-      let userData = JSON.parse(localstorage)
-      this.userNameLogged = userData.username
-    }
+    let localstorage = this.authService.getLocalstorageData('deliveryman')
+    this.userNameLogged = localstorage.username
   }
 
   logOut() {

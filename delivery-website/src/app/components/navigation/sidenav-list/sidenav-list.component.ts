@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/pages/deliveryman/services/auth-service';
 
 @Component({
   selector: 'app-sidenav-list',
@@ -10,7 +11,7 @@ export class SidenavListComponent implements OnInit {
 
   @Output() sidenavClose = new EventEmitter();
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -26,6 +27,11 @@ export class SidenavListComponent implements OnInit {
 
   public toPasswordChange(): void {
     this.router.navigate(['auth/password-change'])
+    this.onSidenavClose()
+  }
+
+  public logOut() {
+    this.authService.logout()
     this.onSidenavClose()
   }
 

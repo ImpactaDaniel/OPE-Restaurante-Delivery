@@ -4,7 +4,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { Error404Component } from './components/error-404/error-404.component';
+import { Error404Component } from './components/errors/error404/error404.component';
+import { Error401Component } from './components/errors/error401/error401.component';
 import { NavigationModule } from './components/navigation/navigation.module';
 import { TokenInterceptor } from './middlewares/TokenInterceptor';
 
@@ -28,6 +29,9 @@ import { TokenInterceptor } from './middlewares/TokenInterceptor';
       {
         path: 'deliveryman',
         loadChildren: () => import('./pages/deliveryman/delivery.module').then(m => m.DeliveryModule)
+      },
+      {
+        path: 'unauthorized', component: Error401Component
       },
       {
         path: '**', component: Error404Component

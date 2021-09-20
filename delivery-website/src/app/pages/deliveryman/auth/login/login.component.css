@@ -4,6 +4,12 @@ body{
     width: 100%;
 }
 
+.alert {
+    width: auto;
+    height: 40px;
+    padding: 4px;
+}
+
 .login_page{
     height: 100vh;
     overflow-x: hidden;
