@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit{
     this.deliveryMan.username = this.loginForm.get('username')?.value
     this.deliveryMan.password = this.loginForm.get('password')?.value
     let response = await this.authService.authenticate(this.deliveryMan)
-    console.log(response)
+    // console.log(response)
     this.validateMessage(response)
   }
 

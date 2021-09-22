@@ -16,4 +16,5 @@ export class ChangeStatusService {
     public changeDeliverymanStatus(){             
         return this.httpClient.get<any>(`${this.url + this.changeStatusUrl}`);
     }
+    
 }

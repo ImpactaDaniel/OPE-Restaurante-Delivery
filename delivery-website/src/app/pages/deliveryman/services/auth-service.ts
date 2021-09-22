@@ -28,16 +28,13 @@ export class AuthService {
 
   public isFirstLogin(): boolean {
     let data = this.getLocalstorageData('deliveryman')
-    console.log(data)
     return data.is_first_login
   }
 
   public async authenticate(user: Deliveryman): Promise<any> {
     if (user.username !== '' && user.password !== '' ) { 
       let result = await this.http.post<any>(`${this.url + this.authenticationUrl}`, user).toPromise()
-      console.log(result)
       if (result && result.access_token) {
-        console.log(result)
         this.saveToken(result.access_token);
         this.saveLocalstorageData('deliveryman', result.current_user);
         this.router.navigate(['/deliveryman/history']);
