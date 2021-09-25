@@ -12,27 +12,25 @@
     <div class="col-lg-4 col-md-6 col-sm-8 col-xs-10 h-100">
         <form [formGroup]="loginForm" (ngSubmit)="LogIn()">
             <div class="campos-login">
-            <mat-form-field class="input-form" appearance="fill">
-                <mat-label>Usuário</mat-label>
-                <input class="form-control" matInput formControlName="username" type="text">
-                <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
-                    Usuário é <strong>obrigatório.</strong>
-                </mat-error>
-            </mat-form-field>
-            <br>
-            <mat-form-field class="input-form" appearance="fill">
-                <mat-label>Senha</mat-label>
-                <input class="form-control" matInput formControlName="password" type="password">
-                <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
-                    Senha é <strong>obrigatória.</strong>
-                </mat-error>
-            </mat-form-field>
+                <mat-form-field class="input-form" appearance="fill">
+                    <mat-label>Usuário</mat-label>
+                        <input class="form-control" matInput formControlName="username" type="text">
+                    <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
+                        Usuário é <strong>obrigatório.</strong>
+                    </mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field class="input-form" appearance="fill">
+                    <mat-label>Senha</mat-label>
+                        <input class="form-control" matInput formControlName="password" type="password">
+                    <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+                        Senha é <strong>obrigatória.</strong>
+                    </mat-error>
+                </mat-form-field>
             </div>
-            <div class="button-form">
             <button type="submit" id="btn-login" class="btn btn-primary button-form">Login</button>
-            </div>
             <div style="margin-top: 15px;">
-            <a href="">Esqueceu sua senha? Clique aqui!</a>
+                <a href="">Esqueceu sua senha? Clique aqui!</a>
             </div>
         </form>
     </div>

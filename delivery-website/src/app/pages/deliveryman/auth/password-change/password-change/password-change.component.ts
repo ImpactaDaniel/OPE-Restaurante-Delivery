@@ -22,7 +22,8 @@ export class PasswordChangeComponent implements OnInit {
     this.changePasswordForm = this.formBuilder.group({
       username: ['', Validators.required],
       current_password: ['', Validators.required],
-      new_password: ['', Validators.required]
+      new_password: ['', Validators.required],
+      new_password_confirm: ['', Validators.required]
     })
   }
 
@@ -34,6 +35,7 @@ export class PasswordChangeComponent implements OnInit {
     this.deliveryMan.username = this.changePasswordForm.get('username')?.value
     this.deliveryMan.current_password = this.changePasswordForm.get('current_password')?.value
     this.deliveryMan.new_password = this.changePasswordForm.get('new_password')?.value
+    this.deliveryMan.new_password_confirm = this.changePasswordForm.get('new_password_confirm')?.value
     let response = await this.authService.passwordChange(this.deliveryMan)
     console.log(response)
     this.validateMessage(response)
