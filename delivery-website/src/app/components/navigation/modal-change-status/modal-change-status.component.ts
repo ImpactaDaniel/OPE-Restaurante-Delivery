@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { AuthService } from 'src/app/pages/deliveryman/services/auth-service';
+import { AuthService } from 'src/app/pages/deliveryman/services/auth.service';
 
 import { ChangeStatusService } from '../../../pages/deliveryman/services/change-status-service';
   

@@ -25,3 +25,7 @@ h1 {
 .campos-login {
     margin-top: 15px;
 }
+
+.form-control:focus {
+    background-color: #FFBA5C;
+}
