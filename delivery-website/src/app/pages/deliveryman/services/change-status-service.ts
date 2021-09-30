@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 
-export class ChangeStatusService {
-
+export class StatusChangeService {
 
     private changeStatusUrl: string = 'user/change-status'
 
@@ -14,7 +14,7 @@ export class ChangeStatusService {
     }
 
     public changeDeliverymanStatus(){             
-        return this.httpClient.get<any>(`${this.url + this.changeStatusUrl}`);
+        return this.httpClient.get<Promise<any>>(`${this.url + this.changeStatusUrl}`);
     }
     
 }
