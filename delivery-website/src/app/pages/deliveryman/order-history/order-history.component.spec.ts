@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeliveryHistoryComponent } from './delivery-history.component';
+import { DeliveryHistoryComponent } from './order-history.component';
 
 describe('DeliveryHistoryComponent', () => {
   let component: DeliveryHistoryComponent;

@@ -1,0 +1,44 @@
+
+<div class="container-fluid">
+    <div class="row title">
+        <h4> Histórico de Entregas </h4>
+    </div>
+    <hr>
+    <div class="row justify-content-center">
+        <div class="col col-xl-8">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Filter By:</label>
+            
+                <div class="col-sm-10">
+                    <input class="form-control">
+                </div>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Titulo</th>
+                        <!-- <th>ID</th>
+                        <th>Data</th>
+                        <th>Hora</th>
+                        <th>Pedido</th>
+                        <th>Endereço</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let order of ordersList">
+                        <td>{{ order }}</td>
+                        <!-- <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td> -->
+                        <!-- <td>
+                            <a  class="btn btn-primary">Detalhes</a>
+                        </td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
+

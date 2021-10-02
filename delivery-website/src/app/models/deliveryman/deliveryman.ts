@@ -1,3 +1,5 @@
+import { Order } from "./order";
+
 export class Deliveryman {
     name: string;
     lastName: string;
@@ -9,4 +11,12 @@ export class Deliveryman {
     current_password: string;
     new_password: string;
     new_password_confirm: string;
+    cellphone: string;
+    role: Role;
+    orders: Order[];
+    last_seen: string;
+}
+
+export class Role {
+    name: string;
 }
