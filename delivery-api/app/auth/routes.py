@@ -78,14 +78,16 @@ def delete():
 
 @auth.post('/change-password')
 @jwt_required()
-@cross_origin()
 def change_pasword():
     username = request.json.get('username', None)
     current_password = request.json.get('current_password', None)
     new_password = request.json.get('new_password', None)
+    new_password_confirm = request.json.get('new_password_confirm', None)
     user = User.query.filter_by(username=username).first()
     if username == get_jwt_identity():
         if user is not None and user.verify_password(current_password):
+            if new_password != new_password_confirm:
+                return forbidden('Passwords must to by equals.')
             user.password = new_password
             user.is_first_login = False
             db.session.add(user)

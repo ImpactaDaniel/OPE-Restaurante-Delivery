@@ -8,4 +8,5 @@ export class Deliveryman {
     password: string;
     current_password: string;
     new_password: string;
+    new_password_confirm: string;
 }
