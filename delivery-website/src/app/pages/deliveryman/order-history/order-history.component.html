@@ -7,14 +7,18 @@
     <div class="row justify-content-center">
         <div class="col col-xl-8">
             <div class="form-group row">
-                <label class="col-sm-1 col-form-label">Coluna:</label>
-                <div class="col-2">
-                    <input class="form-control">
-                </div>
-                <label class="col-sm-1 col-form-label">Pesquisar:</label>
-                <div class="col-4">
-                    <input [(ngModel)]="filter" class="form-control">
-                </div>
+                <mat-form-field class="col-4" appearance="fill">
+                    <mat-label>Coluna</mat-label>
+                    <mat-select [(ngModel)]="columnNames">
+                        <mat-option *ngFor="let col of columnNames">
+                            {{ col }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="col-4 input-form" appearance="fill">
+                    <mat-label>Pesquisar</mat-label>
+                    <input matInput [(ngModel)]="filter">
+                </mat-form-field>
             </div>
             <table class="table table-striped">
                 <thead>

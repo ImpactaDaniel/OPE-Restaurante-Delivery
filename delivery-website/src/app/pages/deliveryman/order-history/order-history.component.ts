@@ -13,12 +13,13 @@ export class OrderHistoryComponent implements OnInit {
   orders: [] = [];
   filteredOrders: any[] = [];
   _filterBy: string;
+  columnNames: string[] = [];
 
   constructor(public router: Router, private orderService: OrderService) { }
 
   ngOnInit(): void {
     this.getAllHistory();
-
+    this.getColumnNames();
   }
   
   private async getAllHistory() {
@@ -39,6 +40,10 @@ export class OrderHistoryComponent implements OnInit {
 
   get filter() {
     return this._filterBy;
+  }
+
+  public getColumnNames(): any {
+    this.columnNames = ['coluna1', 'coluna2', 'coluna3', 'coluna4', 'coluna5']
   }
   
   private getSelectedHistory(value: string): void {
