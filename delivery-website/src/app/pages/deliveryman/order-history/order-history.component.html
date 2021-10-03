@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col col-xl-8">
             <div class="form-group row">
-                <mat-form-field class="col-4" appearance="fill">
+                <mat-form-field class="col-4" appearance="outline">
                     <mat-label>Coluna</mat-label>
                     <mat-select [(ngModel)]="columnNames">
                         <mat-option *ngFor="let col of columnNames">
@@ -15,7 +15,7 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-                <mat-form-field class="col-4 input-form" appearance="fill">
+                <mat-form-field class="col-4 input-form" appearance="outline">
                     <mat-label>Pesquisar</mat-label>
                     <input matInput [(ngModel)]="filter">
                 </mat-form-field>
