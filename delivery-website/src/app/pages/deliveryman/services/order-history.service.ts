@@ -19,7 +19,6 @@ export class OrderService {
         console.log(`${this.url + this.orderUrl}`)
         let orders = await this.httpClient.get<Promise<any>>(`${this.url + this.orderUrl}`).toPromise()
         if (orders) {
-            console.log(orders)
             return orders.orders
         } else {
             return []

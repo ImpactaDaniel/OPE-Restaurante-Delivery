@@ -10,23 +10,35 @@ import { OrderService } from '../services/order-history.service';
 })
 export class OrderHistoryComponent implements OnInit {
 
-  ordersList: [] = [];
+  orders: [] = [];
+  filteredOrders: any[] = [];
+  _filterBy: string;
 
   constructor(public router: Router, private orderService: OrderService) { }
 
   ngOnInit(): void {
     this.getAllHistory();
-    console.log(this.ordersList)
+
   }
   
   private async getAllHistory() {
     let orders = await this.orderService.getAllOrders();
     if(orders.length > 0) {
-      this.ordersList = orders
+      this.orders = orders
+      this.filteredOrders = this.orders
     } else {
       console.log('vazia')
     }
+    this.filteredOrders = this.orders
+  }
 
+  set filter(value: string) {
+    this._filterBy = value
+    this.filteredOrders = this.orders.filter((order: any) => order.toLocaleLowerCase().indexOf(this._filterBy.toLocaleLowerCase()) > -1)
+  }
+
+  get filter() {
+    return this._filterBy;
   }
   
   private getSelectedHistory(value: string): void {
