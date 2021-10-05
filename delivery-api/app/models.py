@@ -169,15 +169,11 @@ class User(db.Model):
 class RoleSchema(Schema):
     name = fields.String()
 
-class OrderHistorySchema(Schema):
-    title = fields.String()
-
 class UserSchema(Schema):
     name = fields.String()
     username = fields.String()
     cellphone = fields.String()
     role = fields.Nested(RoleSchema(only=('name',)))
-    orders = fields.List(fields.String)
     last_seen = fields.String()
     status = fields.Boolean()
 
