@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../pages/deliveryman/services/auth-service';
+import { AlertService } from 'src/app/pages/deliveryman/services/alert.service';
+import { AuthService } from 'src/app/pages/deliveryman/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,31 +10,44 @@ import { AuthService } from '../../../pages/deliveryman/services/auth-service';
 })
 export class HeaderComponent implements OnInit {
 
+  statusDescription: string;
   userNameLogged: string;
 
   @Output() public sidenavToggle = new EventEmitter();
 
-  constructor(private authService: AuthService, public router: Router){
+  constructor(private authService: AuthService, private alertService: AlertService, public router: Router){
 
   }
 
   ngOnInit(): void {
     this.getUserNameLogged()
+    this.getStatusDescriptionToHeader();
+  }
+
+  private getStatusDescriptionToHeader(): void {
+    var data = this.authService.getLocalstorageData('deliveryman');
+    this.statusDescription = this.alertService.descriptionStatus(data.status);
   }
 
   public onToggleSidenav = () => {
     this.sidenavToggle.emit()
   }
 
-  getUserNameLogged() {
-    let localstorage = localStorage.getItem('deliveryman')
-    if (localstorage) {
-      let userData = JSON.parse(localstorage)
-      this.userNameLogged = userData.username
-    }
+  private getUserNameLogged() {
+    let localstorage = this.authService.getLocalstorageData('deliveryman')
+    this.userNameLogged = localstorage.username
   }
 
-  logOut() {
+  public openAlert() {
+    this.alertService.showAlertStatusChange().then(
+      response => {
+        if (response)
+        this.statusDescription = response
+      }
+    )
+  }
+
+  public logOut() {
     this.authService.logout()
   }
 

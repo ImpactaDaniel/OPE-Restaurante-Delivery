@@ -3,14 +3,15 @@
         <div class="col-md-12">
             <div class="error-template row justify-content-center">
                 <h1 class="text-center"> Oops!</h1>
-                <h2 class="text-center">404 Not Found</h2>
+                <h2 class="text-center">Não Autorizado.</h2>
                 <div class="error-details row justify-content-center">
-                    Sorry, an error has occured, Requested page not found!
+                    Você não tem permissão para acessar esta página. Solicite ao administrador.
                 </div>
                 <div class="error-actions row justify-content-center">
                     <div class="col-2">
-                        <a (click)="sendToHome()" class="btn btn-primary btn-lg" style="background-color: #FFBA5C; border: #FFBA5C;"><span class="glyphicon glyphicon-home"></span>
-                            Take Me Home </a>
+                        <a (click)="redirect()" class="btn btn-primary" style="background-color: #FFBA5C; border: #FFBA5C;">
+                            Retorna à página principal. 
+                        </a>
                     </div>
                 </div>
             </div>
