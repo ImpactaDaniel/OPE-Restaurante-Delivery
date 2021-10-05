@@ -50,6 +50,10 @@ def user():
     user = User.query.filter_by(username=current_user).first()
     user_schema = UserSchema()
     result = user_schema.dump(user)
+    orders = Order.query.filter_by(author=user).order_by(Order.updated_at.desc()).all()
+    orders_schema = OrderSchema(many=True)
+    order_result = orders_schema.dump(orders)
+    result['orders'] = order_result
     return jsonify(result)
 
 @main.post('/user/<username>')
