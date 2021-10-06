@@ -4,7 +4,8 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
-    JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=4)
+
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=5)
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'chave-boa'
     JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY') or 'jwt_secret'
     GOOGLE_KEY = os.environ.get('GOOGLE_KEY')
