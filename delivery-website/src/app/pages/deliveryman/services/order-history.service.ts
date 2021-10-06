@@ -17,7 +17,8 @@ export class OrderService {
 
     public async getAllOrders() {
         console.log(`${this.url + this.orderUrl}`)
-        let orders = await this.httpClient.get<Promise<any>>(`${this.url + this.orderUrl}`).toPromise()
+        let orders = await this.httpClient.get<Promise<Deliveryman>>(`${this.url + this.orderUrl}`).toPromise()
+        // console.log(orders)
         if (orders) {
             return orders.orders
         } else {
@@ -26,9 +27,3 @@ export class OrderService {
     }
 
 }
-
-var HISTORY: Order[] = [
-    {
-        title: 'Feijoada'
-    }
-]

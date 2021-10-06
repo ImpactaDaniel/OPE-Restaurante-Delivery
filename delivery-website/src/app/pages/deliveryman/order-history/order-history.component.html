@@ -9,9 +9,9 @@
             <div class="form-group row">
                 <mat-form-field class="col-4" appearance="outline">
                     <mat-label>Coluna</mat-label>
-                    <mat-select [(ngModel)]="columnNames">
-                        <mat-option *ngFor="let col of columnNames">
-                            {{ col }}
+                    <mat-select [(ngModel)]="selectedHeader">
+                        <mat-option  #Selected *ngFor="let header of headerNames" [value]="header">
+                            {{ header }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -24,20 +24,22 @@
                 <thead>
                     <tr>
                         <th>Titulo</th>
-                        <!-- <th>ID</th>
                         <th>Data</th>
-                        <th>Hora</th>
-                        <th>Pedido</th>
-                        <th>Endereço</th> -->
+                        <th>Endereço</th>
+                        <th>Estatus</th>
+                        <th>Preço</th>
+                        <th>Pagamento</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let order of filteredOrders">
-                        <td>{{ order }}</td>
-                        <!-- <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td> -->
+                        <td>{{ order.title }}</td>
+                        <td>{{ order.created_at | date: 'short' }}</td>
+                        <td>{{ order.address }}</td>
+                        <td>{{ order.status }}</td>
+                        <td>{{ order.price }}</td>
+                        <td>{{ order.payment }}</td>
+                        <td>
                         <td>
                             <a  class="btn btn-primary">Detalhes</a>
                         </td>

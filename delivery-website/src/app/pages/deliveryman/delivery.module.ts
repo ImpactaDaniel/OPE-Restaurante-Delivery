@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { OrderHistoryComponent } from "./order-history/order-history.component";
 import { DeliverymanRoutingModule } from "./deliveryman-routing.module";
 import { CommonModule } from "@angular/common";
@@ -13,6 +13,7 @@ import { MatInputModule } from "@angular/material/input";
         CommonModule,
         MatSelectModule,
         MatInputModule,
+        ReactiveFormsModule,
         DeliverymanRoutingModule
     ]
 })
