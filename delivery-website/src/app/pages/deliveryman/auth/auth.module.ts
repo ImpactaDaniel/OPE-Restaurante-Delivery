@@ -2,14 +2,13 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgbAlertModule } from "@ng-bootstrap/ng-bootstrap";
-import { AlertMessageComponent } from "src/app/components/alert-message/alert-message.component";
 import { MaterialModule } from "src/app/material.module";
 import { AuthRoutingModule } from "./auth-routing.module";
 import { LoginComponent } from "./login/login.component";
 import { PasswordChangeComponent } from './password-change/password-change/password-change.component';
 
 @NgModule({
-    declarations: [LoginComponent, PasswordChangeComponent, AlertMessageComponent],
+    declarations: [LoginComponent, PasswordChangeComponent],
     imports: [
         CommonModule,
         FormsModule,
@@ -18,9 +17,7 @@ import { PasswordChangeComponent } from './password-change/password-change/passw
         NgbAlertModule,
         MaterialModule
     ],
-    exports: [
-        AlertMessageComponent
-    ]
+    exports: []
 })
 
 export class AuthModule {}

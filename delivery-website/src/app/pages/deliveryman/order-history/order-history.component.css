@@ -8,3 +8,7 @@ hr {
 .title {
     margin: 20px auto 5px 20px;
 }
+
+mat-form-field.mat-form-field {
+    font-size: 12px;
+  }

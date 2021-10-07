@@ -42,15 +42,11 @@ export class PasswordChangeComponent implements OnInit {
   }
 
   private validateMessage(mgs: string) {
-    let mgsBr = ''
     if (mgs) {
       this.message = true
       if (mgs === 'Password changed successfully') {
-        mgsBr = 'Senha modificada com sucesso!'
-      } else {
-        mgsBr = 'Não foi possível completar esta operação.'
+        this.messageAlert = 'Senha modificada com sucesso!'
       }
-      this.messageAlert = mgsBr
     }
   }
   

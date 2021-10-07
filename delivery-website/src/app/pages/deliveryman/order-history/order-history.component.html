@@ -1,0 +1,53 @@
+
+<div class="container-fluid">
+    <div class="row title">
+        <h4> Histórico de Entregas </h4>
+    </div>
+    <hr>
+    <div class="row justify-content-center">
+        <div class="col col-xl-8">
+            <div class="form-group row">
+                <mat-form-field class="col-4" appearance="outline">
+                    <mat-label>Coluna</mat-label>
+                    <mat-select [(ngModel)]="selectedHeader">
+                        <mat-option  #Selected *ngFor="let header of headerNames" [value]="header">
+                            {{ header }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="col-4 input-form" appearance="outline">
+                    <mat-label>Pesquisar</mat-label>
+                    <input matInput [(ngModel)]="filter">
+                </mat-form-field>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Titulo</th>
+                        <th>Data</th>
+                        <th>Endereço</th>
+                        <th>Status</th>
+                        <th>Preço</th>
+                        <th>Pagamento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let order of filteredOrders">
+                        <td>{{ order.title }}</td>
+                        <td>{{ order.created_at | date: 'short' }}</td>
+                        <td>{{ order.address }}</td>
+                        <td>{{ order.status }}</td>
+                        <td>{{ order.price }}</td>
+                        <td>{{ order.payment }}</td>
+                        <td>
+                        <td>
+                            <a  class="btn btn-primary">Detalhes</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
+

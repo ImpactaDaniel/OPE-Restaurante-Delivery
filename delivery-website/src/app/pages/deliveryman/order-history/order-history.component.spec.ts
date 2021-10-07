@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AlertMessageComponent } from './alert-message.component';
+import { DeliveryHistoryComponent } from './order-history.component';
 
-describe('AlertMessageComponent', () => {
-  let component: AlertMessageComponent;
-  let fixture: ComponentFixture<AlertMessageComponent>;
+describe('DeliveryHistoryComponent', () => {
+  let component: DeliveryHistoryComponent;
+  let fixture: ComponentFixture<DeliveryHistoryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AlertMessageComponent ]
+      declarations: [ DeliveryHistoryComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AlertMessageComponent);
+    fixture = TestBed.createComponent(DeliveryHistoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
