@@ -16,9 +16,8 @@ export class OrderService {
     constructor(@Inject('BASE_URL') private url: string, public router: Router, private httpClient: HttpClient) {}
 
     public async getAllOrders() {
-        console.log(`${this.url + this.orderUrl}`)
+        // console.log(`${this.url + this.orderUrl}`)
         let orders = await this.httpClient.get<Promise<Deliveryman>>(`${this.url + this.orderUrl}`).toPromise()
-        // console.log(orders)
         if (orders) {
             return orders.orders
         } else {

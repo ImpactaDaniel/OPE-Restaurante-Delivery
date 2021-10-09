@@ -14,18 +14,18 @@ export class AlertService {
         Swal.fire({
             position: 'center',
             icon: 'error',
-            title: title || 'Ops.. Algo deu errado!',
-            text: message || 'Tente novamente mais tarde',
+            title: title,
+            text: message,
             timer: 5000,
             showConfirmButton: true,
             didClose: callback
         })
     }
 
-    public async showAlertStatusChange(): Promise<any> {
+    public async showAlertStatusChange(message: string): Promise<any> {
         var saida = await Swal.fire({
             title: 'Mudança de Status',
-            text: 'Deseja mudar seu status?',
+            text: message,
             timer: 5000,
             showCancelButton: true,
             showConfirmButton: true,
@@ -40,7 +40,7 @@ export class AlertService {
                 Swal.fire({
                     title: 'Mudança de Status',
                     html: `<div>Seu status foi alterado para ${status}.</div><div>${message}</div>`,
-                    timer: 2000
+                    timer: 5000
                 })
                 return new Promise(
                     (resolve, reject) => {
@@ -50,8 +50,8 @@ export class AlertService {
             } else if (result.dismiss === Swal.DismissReason.timer) {
                 Swal.fire({
                     title: 'Mudança de Status',
-                    text: 'Cancelado. Tente novamente.',
-                    timer: 2000
+                    text: `<div>Cancelado.</div><div>Tente novamente</div>`,
+                    timer: 5000
                 })
               }
         })

@@ -24,8 +24,7 @@ h1 {
 
 .campos-login {
     margin-top: 15px;
-}
-
-.form-control:focus {
-    background-color: #FFBA5C;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
 }
