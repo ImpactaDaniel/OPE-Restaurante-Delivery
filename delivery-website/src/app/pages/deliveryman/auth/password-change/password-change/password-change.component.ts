@@ -37,15 +37,15 @@ export class PasswordChangeComponent implements OnInit {
     this.deliveryMan.new_password = this.changePasswordForm.get('new_password')?.value
     this.deliveryMan.new_password_confirm = this.changePasswordForm.get('new_password_confirm')?.value
     let response = await this.authService.passwordChange(this.deliveryMan)
-    console.log(response)
     this.validateMessage(response)
   }
 
-  private validateMessage(mgs: string) {
+  private validateMessage(mgs: any) {
     if (mgs) {
       this.message = true
-      if (mgs === 'Password changed successfully') {
+      if (mgs !== null) {
         this.messageAlert = 'Senha modificada com sucesso!'
+        this.changePasswordForm.reset()
       }
     }
   }

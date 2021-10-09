@@ -12,7 +12,6 @@ export class TokenInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let tokenResponse = this.authService.getToken();
-        // console.log(tokenResponse)
         let newReq = req.clone({
             setHeaders: {
                 Authorization: `Bearer ${tokenResponse}`
@@ -21,7 +20,7 @@ export class TokenInterceptor implements HttpInterceptor {
         return next.handle(newReq).pipe(
             catchError(response => {
                 if (response instanceof HttpErrorResponse && (response.status !== 200)) {
-                    this.alertService.showError()
+                    this.alertService.showError('Aviso.', response.error.message)
                 }
                 return throwError(response)
             }

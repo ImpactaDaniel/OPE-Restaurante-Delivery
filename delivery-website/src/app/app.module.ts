@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -8,6 +8,7 @@ import { Error404Component } from './components/errors/error404/error404.compone
 import { Error401Component } from './components/errors/error401/error401.component';
 import { NavigationModule } from './components/navigation/navigation.module';
 import { TokenInterceptor } from './middlewares/TokenInterceptor';
+import { GlobalErrorHandler } from './middlewares/GlobalErrorHandler';
 
 
 @NgModule({
@@ -44,6 +45,10 @@ import { TokenInterceptor } from './middlewares/TokenInterceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
+    },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler
     }
   ],
   bootstrap: [AppComponent]

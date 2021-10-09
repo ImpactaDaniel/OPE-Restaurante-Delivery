@@ -39,12 +39,17 @@ export class HeaderComponent implements OnInit {
   }
 
   public openAlert() {
-    this.alertService.showAlertStatusChange().then(
+    let message = this.verifyMessageAlert(this.statusDescription)
+    this.alertService.showAlertStatusChange(message).then(
       response => {
         if (response)
         this.statusDescription = response
       }
     )
+  }
+
+  private verifyMessageAlert(status: string): string {
+    return status === 'Disponível' ? 'Deseja ficar Indisponível?' : 'Deseja ficar Disponível?'
   }
 
   public logOut() {

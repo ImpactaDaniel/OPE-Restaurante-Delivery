@@ -30,7 +30,7 @@ def login():
                         'access_token': access_token})
         set_access_cookies(response, access_token)
         return response
-    return unauthorized('Invalid credentials')
+    return unauthorized('Credenciais inválidas.')
 
 @auth.post('/register')
 def register():
@@ -87,10 +87,10 @@ def change_pasword():
     if username == get_jwt_identity():
         if user is not None and user.verify_password(current_password):
             if new_password != new_password_confirm:
-                return forbidden('Passwords must to by equals.')
+                return forbidden('As senhas devem ser iguais.')
             user.password = new_password
             user.is_first_login = False
             db.session.add(user)
             db.session.commit()
-            return jsonify('Password changed successfully')
-    return forbidden('The change is only possible on the logged in user')
+            return jsonify('Senha alterada com sucesso!')
+    return forbidden('O Usuário necessita estar logado.')
