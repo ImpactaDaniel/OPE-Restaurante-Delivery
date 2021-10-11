@@ -6,7 +6,7 @@ from flask_jwt_extended import get_jwt_identity
 from .errors import unauthorized, bad_request, forbidden, not_found
 from flask_jwt_extended import jwt_required
 from flask import request, jsonify
-from .mailer import email_sender
+from ..email import send_email
 from ..models import User
 from .. import db
 from . import auth
@@ -52,11 +52,10 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         try:
-            email_sender(target=personal['email'],
-                         username=user['username'],
-                         password=user['password'])
-        except:
-            pass
+            send_email(subject='Seja bem-vindo!', to=personal['email'],
+                        username=user['username'], password=user['password'])
+        except Exception as err:
+            print(err)
         return jsonify({'status': 'Success',
                         'user': str(new_user.username)
                         }), 200
