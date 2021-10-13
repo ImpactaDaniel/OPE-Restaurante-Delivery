@@ -16,7 +16,6 @@ def create_app(config_name):
     app = Flask(__name__)
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
-    # app.config["JWT_TOKEN_LOCATION"] = ["headers"]
     app.config["JWT_COOKIE_CSRF_PROTECT"] = False
     app.config["JWT_COOKIE_SECURE"] = False
 
@@ -25,6 +24,8 @@ def create_app(config_name):
     mail.init_app(app)
     cors.init_app(app)
 
+    app.extensions['mail'].debug = 0
+    
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint, url_prefix='/api/v1')
 
