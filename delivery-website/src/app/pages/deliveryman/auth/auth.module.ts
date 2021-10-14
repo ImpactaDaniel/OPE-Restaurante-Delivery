@@ -7,9 +7,10 @@ import { AuthRoutingModule } from "./auth-routing.module";
 import { LoginComponent } from "./login/login.component";
 import { PasswordChangeComponent } from './password-change/password-change/password-change.component';
 import { RememberSendemailComponent } from './remember/remember-sendemail/remember-sendemail/remember-sendemail.component';
+import { RememberChangePasswordComponent } from './remember/remember-changepassword/remember-changepassword/remember-changepassword.component';
 
 @NgModule({
-    declarations: [LoginComponent, PasswordChangeComponent, RememberSendemailComponent],
+    declarations: [LoginComponent, PasswordChangeComponent, RememberSendemailComponent, RememberChangePasswordComponent],
     imports: [
         CommonModule,
         FormsModule,

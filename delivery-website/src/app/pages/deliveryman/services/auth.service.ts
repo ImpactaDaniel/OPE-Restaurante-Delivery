@@ -54,6 +54,16 @@ export class AuthService {
     }
   }
 
+  public async rememberPasswordChange(user: Deliveryman): Promise<any> {
+    if (user.username !== '' && user.current_password !== '' && user.new_password !== '' && user.new_password_confirm !== '') {
+      let result = await this.http.post<any>(`${this.url + this.passwordChangeUrl}`, user).toPromise()
+      if (result) {
+        return result
+      }
+      return null
+    }
+  }
+
   public logout() {      
     localStorage.clear()                      
     this.router.navigate(['/']);
