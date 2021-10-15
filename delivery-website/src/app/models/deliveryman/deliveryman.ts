@@ -15,6 +15,7 @@ export class Deliveryman {
     role: Role;
     orders: Order[];
     last_seen: string;
+    token: string;
 }
 
 export class Role {

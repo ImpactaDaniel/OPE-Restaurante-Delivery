@@ -39,7 +39,7 @@ def calculate_distance():
 @manager_required
 def users():
     users = User.query.all()
-    users_schema = UserSchema(many=True, only=('username', 'status', 'last_seen'))
+    users_schema = UserSchema(many=True, only=('username', 'email', 'status', 'last_seen'))
     result = users_schema.dump(users)
     return jsonify(result)
 

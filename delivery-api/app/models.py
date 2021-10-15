@@ -165,7 +165,7 @@ class User(db.Model):
         db.session.add(self)
         db.session.commit()
     
-    def get_reset_token(self, expires=500):
+    def get_reset_token(self, expires=50000000):
         JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
         return jwt.encode({'reset_token': self.username,
                            'exp': time() + expires},
@@ -178,6 +178,7 @@ class User(db.Model):
             username = jwt.decode(token,
                                    key=JWT_SECRET_KEY,
                                    algorithms='HS256')['reset_token']
+            print(username)
         except Exception:
             return
         return User.query.filter_by(username=username).first()
@@ -192,6 +193,7 @@ class RoleSchema(Schema):
 class UserSchema(Schema):
     name = fields.String()
     username = fields.String()
+    email = fields.String()
     cellphone = fields.String()
     role = fields.Nested(RoleSchema(only=('name',)))
     last_seen = fields.String()

@@ -82,6 +82,7 @@ def forgot_password():
     if user:
         #send_recovery_email(user)
         return jsonify(user.get_reset_token())
+    return jsonify('User not found')
 
 @auth.post('/verify-token')
 def verify_password():
@@ -97,10 +98,7 @@ def verify_password():
     db.session.add(user)
     db.session.commit()
     return jsonify('Senha alterada com sucesso!')
-    
-
-
-
+ 
 @auth.post('/change-password')
 @jwt_required()
 def change_password():
