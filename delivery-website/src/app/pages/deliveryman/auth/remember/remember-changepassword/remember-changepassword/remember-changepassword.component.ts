@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Deliveryman } from 'src/app/models/deliveryman/deliveryman';
 import { AuthService } from 'src/app/pages/deliveryman/services/auth.service';
 
@@ -9,13 +10,17 @@ import { AuthService } from 'src/app/pages/deliveryman/services/auth.service';
   styleUrls: ['./remember-changepassword.component.css']
 })
 export class RememberChangePasswordComponent implements OnInit {
-
+  token: string;
   changePasswordForm: FormGroup;
   private deliveryMan: Deliveryman = new Deliveryman();
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder) { }
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.token = params['token'];
+      console.log(this.token)
+    });
     this.changePasswordForm= this.formBuilder.group({
       username: ['', Validators.required],
       current_password: ['', Validators.required],

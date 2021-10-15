@@ -13,6 +13,8 @@ export class AuthService {
   tokenKey = btoa('access_token')
   private authenticationUrl: string = 'auth/login'
   private passwordChangeUrl: string = 'auth/change-password'
+  private rememberPasswordChangeUrl: string = 'auth/xxxxxxx'
+  private sendEmailRememberPasswordChangeUrl: string = 'auth/xxxxxxxxx'
 
   constructor(@Inject('BASE_URL') private url: string, private http: HttpClient, private router: Router) {}
 
@@ -55,8 +57,18 @@ export class AuthService {
   }
 
   public async rememberPasswordChange(user: Deliveryman): Promise<any> {
-    if (user.username !== '' && user.current_password !== '' && user.new_password !== '' && user.new_password_confirm !== '') {
-      let result = await this.http.post<any>(`${this.url + this.passwordChangeUrl}`, user).toPromise()
+    if (user.token !== '' && user.new_password !== '' && user.new_password_confirm !== '') {
+      let result = await this.http.post<any>(`${this.url + this.rememberPasswordChangeUrl}`, user).toPromise()
+      if (result) {
+        return result
+      }
+      return null
+    }
+  }
+
+  public async sendEmailRememberPassword(email: string): Promise<any> {
+    if (email !== '') {
+      let result = await this.http.post<any>(`${this.url + this.sendEmailRememberPasswordChangeUrl}`, email).toPromise()
       if (result) {
         return result
       }
