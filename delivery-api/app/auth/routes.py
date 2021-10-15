@@ -5,8 +5,8 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from .errors import unauthorized, bad_request, forbidden, not_found
 from flask_jwt_extended import jwt_required
-from flask import request, jsonify
-from ..email import send_email
+from flask import json, request, jsonify
+from ..email import send_email, send_recovery_email
 from ..models import User
 from .. import db
 from . import auth
@@ -75,9 +75,35 @@ def delete():
     except:
         return not_found('User not found')
 
+@auth.post('/forgot-password')
+def forgot_password():
+    email = request.json.get('email', None)
+    user = User.query.filter_by(email=email).first()
+    if user:
+        #send_recovery_email(user)
+        return jsonify(user.get_reset_token())
+
+@auth.post('/verify-token')
+def verify_password():
+    token = request.json.get('token', None)
+    user = User.verify_reset_token(token=token)
+    if not user:
+        return not_found('User not found')
+    password = request.json.get('new_password', None)
+    confirm_password = request.json.get('new_password_confirm', None)
+    if password != confirm_password:
+        return forbidden('As senhas devem ser iguais.')
+    user.password = password
+    db.session.add(user)
+    db.session.commit()
+    return jsonify('Senha alterada com sucesso!')
+    
+
+
+
 @auth.post('/change-password')
 @jwt_required()
-def change_pasword():
+def change_password():
     username = request.json.get('username', None)
     current_password = request.json.get('current_password', None)
     new_password = request.json.get('new_password', None)
