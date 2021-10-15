@@ -89,8 +89,8 @@ def verify_password():
     user = User.verify_reset_token(token=token)
     if not user:
         return not_found('User not found')
-    password = request.json.get('password', None)
-    confirm_password = request.json.get('confirm_password', None)
+    password = request.json.get('new_password', None)
+    confirm_password = request.json.get('new_password_confirm', None)
     if password != confirm_password:
         return forbidden('As senhas devem ser iguais.')
     user.password = password
