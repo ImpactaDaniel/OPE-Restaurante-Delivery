@@ -1,6 +1,9 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from marshmallow import Schema, fields
 from datetime import datetime
+from time import time
+import jwt
+import os
 from . import db
 
 
@@ -162,6 +165,23 @@ class User(db.Model):
         db.session.add(self)
         db.session.commit()
     
+    def get_reset_token(self, expires=500):
+        JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
+        return jwt.encode({'reset_token': self.username,
+                           'exp': time() + expires},
+                           key=JWT_SECRET_KEY,
+                           algorithm='HS256')
+    
+    def verify_reset_token(token):
+        try:
+            JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
+            username = jwt.decode(token,
+                                   key=JWT_SECRET_KEY,
+                                   algorithms='HS256')['reset_token']
+        except Exception:
+            return
+        return User.query.filter_by(username=username).first()
+
     def __repr__(self):
         return f'<User {self.username}>'
 
