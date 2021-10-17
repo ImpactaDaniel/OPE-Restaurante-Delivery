@@ -27,6 +27,9 @@
                         Senha é <strong>obrigatória.</strong>
                     </mat-error>
                 </mat-form-field>
+                <mat-error *ngIf="message" class="text-center my-2">
+                    {{ messageAlert }}
+                </mat-error>
             </div>
             <button type="submit" id="btn-login" class="btn btn-primary button-form">Login</button>
             <div style="margin-top: 15px;">

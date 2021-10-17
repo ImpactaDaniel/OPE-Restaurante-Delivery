@@ -21,8 +21,6 @@ export class AuthService {
   public isAuthenticated(): boolean {
     let token = this.getToken();
     if (!token || token === null) {
-
-      this.router.navigate(['/auth/login']);
       return false;
     }
     return true
@@ -35,35 +33,43 @@ export class AuthService {
 
   public async authenticate(user: Deliveryman): Promise<any> {
     if (user.username !== '' && user.password !== '' ) { 
-      let result = await this.http.post<any>(`${this.url + this.authenticationUrl}`, user).toPromise()
-      if (result && result.access_token) {
-        this.saveToken(result.access_token);
-        this.saveLocalstorageData('deliveryman', result.current_user);
-        this.router.navigate(['/deliveryman/history']);
-        return false
-      }
-      return true
+      let response = await this.http.post<any>(`${this.url + this.authenticationUrl}`, user).toPromise()
+        .then((result) => {
+          this.saveToken(result.access_token);
+          this.saveLocalstorageData('deliveryman', result.current_user);
+          this.router.navigate(['/deliveryman/history']);
+          return result
+      })
+        .catch((error)=>{
+          return error
+      })
+      return response
     }
   }
 
   public async passwordChange(user: Deliveryman): Promise<any> {
     if (user.username !== '' && user.current_password !== '' && user.new_password !== '' && user.new_password_confirm !== '') {
-      let result = await this.http.post<any>(`${this.url + this.passwordChangeUrl}`, user).toPromise()
-      if (result) {
-        return result
-      }
-      return null
-    }
+      let response = await this.http.post<any>(`${this.url + this.passwordChangeUrl}`, user).toPromise()
+        .then((result) => {
+          return result
+      })
+        .catch((error) => {
+          return error
+      })
+      return response
+     }
   }
 
   public async rememberPasswordChange(user: Deliveryman): Promise<any> {
-    console.log(user.token)
     if (user.token !== '' && user.new_password !== '' && user.new_password_confirm !== '') {
-      let result = await this.http.post<any>(`${this.url + this.rememberPasswordChangeUrl}`, user).toPromise()
-      if (result) {
-        return result
-      }
-      return null
+      let response = this.http.post<any>(`${this.url + this.rememberPasswordChangeUrl}`, user).toPromise()
+        .then((result)=>{
+          return result
+      })
+        .catch((error)=>{
+          return error
+      })
+      return response
     }
   }
 
@@ -78,8 +84,12 @@ export class AuthService {
   }
 
   public logout() {      
-    localStorage.clear()                      
+    this.localstorageClear()             
     this.router.navigate(['/']);
+  }
+
+  public localstorageClear() {
+    localStorage.clear()  
   }
 
   private saveToken(token: TokenResponse): void {

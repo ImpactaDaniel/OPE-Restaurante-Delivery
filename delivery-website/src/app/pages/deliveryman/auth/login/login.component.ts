@@ -30,14 +30,13 @@ export class LoginComponent implements OnInit{
     this.deliveryMan.username = this.loginForm.get('username')?.value
     this.deliveryMan.password = this.loginForm.get('password')?.value
     let response = await this.authService.authenticate(this.deliveryMan)
-    // console.log(response)
     this.validateMessage(response)
   }
 
-  private validateMessage(mgs: boolean) {
-    this.message = mgs
-    if (mgs) {
-      this.messageAlert = 'Usuário ou senha incorretos.'
+  private validateMessage(response: any) {
+    if (response.status !== 200) {
+      this.message = true
+      this.messageAlert = response.error.message
     }
   }
 
