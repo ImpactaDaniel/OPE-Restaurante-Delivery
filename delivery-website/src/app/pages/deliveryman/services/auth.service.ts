@@ -57,13 +57,15 @@ export class AuthService {
   }
 
   public async rememberPasswordChange(user: Deliveryman): Promise<any> {
-    console.log(user.token)
     if (user.token !== '' && user.new_password !== '' && user.new_password_confirm !== '') {
-      let result = await this.http.post<any>(`${this.url + this.rememberPasswordChangeUrl}`, user).toPromise()
-      if (result) {
+      let response = this.http.post<any>(`${this.url + this.rememberPasswordChangeUrl}`, user).toPromise()
+      .then((result)=>{
         return result
-      }
-      return null
+      })
+      .catch((error)=>{
+        return error
+      })
+      return response
     }
   }
 

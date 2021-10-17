@@ -82,14 +82,14 @@ def forgot_password():
     if user:
         #send_recovery_email(user)
         return jsonify(user.get_reset_token())
-    return jsonify('User not found')
+    return jsonify('Usuário não encontrado')
 
 @auth.post('/verify-token')
 def verify_password():
     token = request.json.get('token', None)
     user = User.verify_reset_token(token=token)
     if not user:
-        return not_found('User not found')
+        return not_found('Link inválido. Usuário não encontrado')
     password = request.json.get('new_password', None)
     confirm_password = request.json.get('new_password_confirm', None)
     if password != confirm_password:
@@ -97,7 +97,8 @@ def verify_password():
     user.password = password
     db.session.add(user)
     db.session.commit()
-    return jsonify('Senha alterada com sucesso!')
+    response = jsonify({'message': 'Senha alterada com sucesso!', 'status': 200})
+    return response
  
 @auth.post('/change-password')
 @jwt_required()

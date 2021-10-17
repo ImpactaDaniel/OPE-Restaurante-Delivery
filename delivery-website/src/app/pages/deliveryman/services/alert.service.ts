@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import Swal from 'sweetalert2';
 import { AuthService } from "./auth.service";
 import { StatusChangeService } from "./change-status-service";
@@ -8,7 +9,7 @@ import { StatusChangeService } from "./change-status-service";
 })
 export class AlertService {
 
-    constructor(public statusChangeService: StatusChangeService, private authService: AuthService) {}
+    constructor(public statusChangeService: StatusChangeService, private authService: AuthService, private router: Router) {}
 
     public showError(title?: string, message?:string, callback?: () => any): void {
         Swal.fire({
@@ -26,7 +27,7 @@ export class AlertService {
         var saida = await Swal.fire({
             title: 'Mudança de Status',
             text: message,
-            timer: 5000,
+            timer: 6000,
             showCancelButton: true,
             showConfirmButton: true,
             confirmButtonText: 'confirmar'
@@ -40,7 +41,7 @@ export class AlertService {
                 Swal.fire({
                     title: 'Mudança de Status',
                     html: `<div>Seu status foi alterado para ${status}.</div><div>${message}</div>`,
-                    timer: 5000
+                    timer: 6000
                 })
                 return new Promise(
                     (resolve, reject) => {
@@ -50,8 +51,8 @@ export class AlertService {
             } else if (result.dismiss === Swal.DismissReason.timer) {
                 Swal.fire({
                     title: 'Mudança de Status',
-                    text: `<div>Cancelado.</div><div>Tente novamente</div>`,
-                    timer: 5000
+                    html: `<div>Cancelado.</div><div>Tente novamente</div>`,
+                    timer: 6000
                 })
               }
         })
@@ -61,6 +62,22 @@ export class AlertService {
     public descriptionStatus(response: Boolean){
         let description = response === true ? 'Disponível' : 'Indisponível';
         return description
+    }
+
+    public async redirectPasswordChange(): Promise<any> {
+        var saida = await Swal.fire({
+            title: 'Senha modificada!',
+            html: `<div>Você será redirecionado para tela de login.</div>`,
+            timer: 5000,
+            showCancelButton: false,
+            showConfirmButton: true,
+            confirmButtonText: 'OK'
+        }).then((result) => {
+            if(result.isConfirmed) {
+                this.router.navigate(['/auth/login']);
+            }
+            this.router.navigate(['/auth/login'])
+        })
     }
 
 }
