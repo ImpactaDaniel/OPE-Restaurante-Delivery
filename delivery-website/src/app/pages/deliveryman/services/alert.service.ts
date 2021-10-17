@@ -64,19 +64,19 @@ export class AlertService {
         return description
     }
 
-    public async redirectPasswordChange(): Promise<any> {
+    public async redirectPasswordChange(nextPage: string, nextRoute: string): Promise<any> {
         var saida = await Swal.fire({
             title: 'Senha modificada!',
-            html: `<div>Você será redirecionado para tela de login.</div>`,
+            html: `<div>Você será redirecionado para ${nextPage}.</div>`,
             timer: 5000,
             showCancelButton: false,
             showConfirmButton: true,
             confirmButtonText: 'OK'
         }).then((result) => {
             if(result.isConfirmed) {
-                this.router.navigate(['/auth/login']);
+                this.router.navigate([nextRoute]);
             }
-            this.router.navigate(['/auth/login'])
+            this.router.navigate([nextRoute])
         })
     }
 

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from 'src/app/guards/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { PasswordChangeComponent } from './password-change/password-change/password-change.component';
 import { RememberChangePasswordComponent } from './remember/remember-changepassword/remember-changepassword/remember-changepassword.component';
@@ -10,7 +11,7 @@ const routes: Routes = [
     path: 'login', component: LoginComponent
   },
   {
-    path: 'password-change', component: PasswordChangeComponent
+    path: 'password-change', component: PasswordChangeComponent, canActivate: [AuthGuardService]
   },
   {
     path: 'remember-sendemail', component: RememberSendemailComponent

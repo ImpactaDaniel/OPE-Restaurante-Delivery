@@ -97,24 +97,22 @@ def verify_password():
     user.password = password
     db.session.add(user)
     db.session.commit()
-    response = jsonify({'message': 'Senha alterada com sucesso!', 'status': 200})
-    return response
+    return jsonify({'message': 'Senha alterada com sucesso!', 'status': 200})
  
 @auth.post('/change-password')
 @jwt_required()
 def change_password():
-    username = request.json.get('username', None)
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(username=current_user).first()
     current_password = request.json.get('current_password', None)
     new_password = request.json.get('new_password', None)
     new_password_confirm = request.json.get('new_password_confirm', None)
-    user = User.query.filter_by(username=username).first()
-    if username == get_jwt_identity():
-        if user is not None and user.verify_password(current_password):
-            if new_password != new_password_confirm:
-                return forbidden('As senhas devem ser iguais.')
-            user.password = new_password
-            user.is_first_login = False
-            db.session.add(user)
-            db.session.commit()
-            return jsonify('Senha alterada com sucesso!')
-    return forbidden('O Usuário necessita estar logado.')
+    if user is not None and user.verify_password(current_password):
+        if new_password != new_password_confirm:
+            return forbidden('As senhas devem ser iguais.')
+        user.password = new_password
+        user.is_first_login = False
+        db.session.add(user)
+        db.session.commit()
+        return jsonify({'message': 'Senha alterada com sucesso!', 'status': 200})
+    return forbidden('O usuário necessita estar logado.')

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Deliveryman } from 'src/app/models/deliveryman/deliveryman';
 import { AuthService } from 'src/app/pages/deliveryman/services/auth.service';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-password-change',
@@ -16,11 +17,10 @@ export class PasswordChangeComponent implements OnInit {
 
   private deliveryMan: Deliveryman = new Deliveryman();
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder) { }
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private alertService: AlertService) { }
 
   ngOnInit(): void {
     this.changePasswordForm = this.formBuilder.group({
-      username: ['', Validators.required],
       current_password: ['', Validators.required],
       new_password: ['', Validators.required],
       new_password_confirm: ['', Validators.required]
@@ -32,7 +32,6 @@ export class PasswordChangeComponent implements OnInit {
   }
 
   public async save() {
-    this.deliveryMan.username = this.changePasswordForm.get('username')?.value
     this.deliveryMan.current_password = this.changePasswordForm.get('current_password')?.value
     this.deliveryMan.new_password = this.changePasswordForm.get('new_password')?.value
     this.deliveryMan.new_password_confirm = this.changePasswordForm.get('new_password_confirm')?.value
@@ -40,13 +39,12 @@ export class PasswordChangeComponent implements OnInit {
     this.validateMessage(response)
   }
 
-  private validateMessage(mgs: any) {
-    if (mgs) {
+  private validateMessage(response: any) {
+    if (response.status === 200){
+      this.alertService.redirectPasswordChange('tela inicial.', '/deliveryman/history');
+    } else {
       this.message = true
-      if (mgs !== null) {
-        this.messageAlert = 'Senha modificada com sucesso!'
-        this.changePasswordForm.reset()
-      }
+      this.messageAlert = response.error.message
     }
   }
   

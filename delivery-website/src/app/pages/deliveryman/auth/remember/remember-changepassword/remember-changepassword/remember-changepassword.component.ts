@@ -35,8 +35,13 @@ export class RememberChangePasswordComponent implements OnInit {
     this.deliveryMan.new_password_confirm = this.changePasswordForm.get('new_password_confirm')?.value
     this.deliveryMan.token = this.token
     let response = await this.authService.rememberPasswordChange(this.deliveryMan)
+    this.validateMessage(response)
+  }
+
+  private validateMessage(response: any) {
     if (response.status === 200){
-      this.alertService.redirectPasswordChange();
+      this.alertService.redirectPasswordChange('tela de login', '/auth/login');
+      this.authService.localstorageClear()
     } else {
       this.message = true
       this.messageAlert = response.error.message

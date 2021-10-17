@@ -19,10 +19,7 @@ export class TokenInterceptor implements HttpInterceptor {
         })
         return next.handle(newReq).pipe(
             catchError(response => {
-                if (response instanceof HttpErrorResponse &&  (response.status !== 200) && response.url && response.url.indexOf('verify') < 0) {
-                    console.log(response)
-                    if (response.url)
-                        console.log(response.url.indexOf('verify'))
+                if (response instanceof HttpErrorResponse &&  (response.status !== 200) && response.url && response.url.indexOf('verify') < 0 && response.url.indexOf('auth') < 0) {
                     this.alertService.showError('Aviso.', response.error.message)
                 }
                 return throwError(response)
