@@ -6,6 +6,7 @@ from flask_cors import cross_origin
 from ..decorators import admin_required, manager_required
 from geopy.geocoders import Nominatim
 from .errors import bad_request
+from ..filter import query_to_dict
 import pycep_correios
 from . import main
 from .. import db
@@ -105,10 +106,13 @@ def order():
 @jwt_required()
 @manager_required
 def orders():
-    query_string = request.query_string
-    query_param = query_string.decode('utf8')
+    query_param = request.query_string
     if query_param:
-        orders = Order.query.filter_by(status=query_param).order_by(Order.updated_at.desc()).all()
+        try:
+            orders = Order.query.filter_by(**query_to_dict(request.url)
+            ).order_by(Order.updated_at.desc()).all()
+        except:
+            return bad_request('Invalid query param')
     else:
         orders = Order.query.order_by(Order.updated_at.desc()).all()
     orders_schema = OrderSchema(many=True, only=('title', 'address', 'status', 'author'))
