@@ -35,7 +35,7 @@ class TestingConfig(Config):
 
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI') or \
-        f'sqlite:///{os.path.join(basedir, "data.sqlite")}'
+        f'postgresql://bxhinslo:HORB0716-d55PYQeVQbssjlhAPbIBxXi@motty.db.elephantsql.com/bxhinslo'
 
 config = {
     'development': DevelopmentConfig,
