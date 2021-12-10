@@ -2,10 +2,6 @@
     <button mat-icon-button (click)="onToggleSidenav()">
         <mat-icon>menu</mat-icon>
     </button>
-    
-    <button id="btn-delivery-activate" class="btn btn-dark btn-sm">
-        Entrega Ativa
-    </button>
 
     <span class="modal-change-status">
         <button class="btn btn-dark btn-sm" (click)="openAlert()">{{ statusDescription }}</button>
@@ -18,32 +14,3 @@
     </button>
     
 </mat-toolbar>
-
-
-<!-- <mat-toolbar class="header container-fluid">
-    <div class="row">
-        <div class="col-sm col-2">
-            <button mat-icon-button (click)="onToggleSidenav()">
-                <mat-icon>menu</mat-icon>
-            </button>
-        </div>
-        <div class="col-sm">
-            <button id="btn-delivery-activate" class="btn btn-dark btn-sm">
-                Entrega Ativa
-            </button>
-        </div>
-        <div class="col-sm col-2">
-            <span class="modal-change-status">
-                <modal-change-status></modal-change-status>
-            </span>
-        </div>
-        <div class="col-sm-4 col-2">
-            <span class="menu-user-name">Seja bem-vindo(a), {{ userNameLogged }}</span>
-        </div>
-        <div class="col-sm">
-            <button mat-icon-button id="btn-logout" (click)="logOut()">
-                <mat-icon>logout</mat-icon>
-            </button>
-        </div>
-    </div>
-</mat-toolbar> -->

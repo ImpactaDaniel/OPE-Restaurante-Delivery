@@ -5,21 +5,7 @@
     </div>
     <hr>
     <div class="row justify-content-center">
-        <div class="col col-xl-8">
-            <div class="form-group row">
-                <mat-form-field class="col-4" appearance="outline">
-                    <mat-label>Coluna</mat-label>
-                    <mat-select [(ngModel)]="selectedHeader">
-                        <mat-option  #Selected *ngFor="let header of headerNames" [value]="header">
-                            {{ header }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field class="col-4 input-form" appearance="outline">
-                    <mat-label>Pesquisar</mat-label>
-                    <input matInput [(ngModel)]="filter">
-                </mat-form-field>
-            </div>
+        <div class="col col-xl-8"> 
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -39,10 +25,6 @@
                         <td>{{ order.status }}</td>
                         <td>{{ order.price }}</td>
                         <td>{{ order.payment }}</td>
-                        <td>
-                        <td>
-                            <a  class="btn btn-primary">Detalhes</a>
-                        </td>
                     </tr>
                 </tbody>
             </table>
