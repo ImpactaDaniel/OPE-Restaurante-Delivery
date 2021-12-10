@@ -33,14 +33,13 @@ export class AuthService {
 
   public async authenticate(user: Deliveryman): Promise<any> {
     if (user.username !== '' && user.password !== '' ) { 
+      console.log('aqui_1')
       let response = await this.http.post<any>(`${this.url + this.authenticationUrl}`, user).toPromise()
         .then((result) => {
           this.saveToken(result.access_token);
           this.saveLocalstorageData('deliveryman', result.current_user);
-          this.router.navigate(['/deliveryman/history']);
           return result
-      })
-        .catch((error)=>{
+        }).catch(error => {
           return error
       })
       return response

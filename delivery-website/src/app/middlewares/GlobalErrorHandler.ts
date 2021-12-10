@@ -1,23 +1,22 @@
-import { HttpErrorResponse, HttpHandler, HttpInterceptor } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { throwError } from "rxjs";
-import { catchError } from "rxjs/operators";
+import { ErrorHandler, Injectable } from "@angular/core";
 import { AlertService } from "../pages/deliveryman/services/alert.service";
 
-@Injectable()
-export class GlobalErrorHandler implements HttpInterceptor{
+@Injectable({ providedIn: 'root' })
+export class GlobalErrorHandler implements ErrorHandler {
     
     constructor(private alertService: AlertService) {}
 
-    intercept(req: any, next: HttpHandler) {
-        return next.handle(req).pipe(
-            catchError(response => {
-                if (response instanceof HttpErrorResponse && response.status !== 400 || response.status !== 401 || response.status !== 403) {
-                    this.alertService.showError('Ops.. Algo deu errado!', 'Tente novamente mais tarde')
-                }
-                return throwError(response)
-            }
-        ));
-    }
+    handleError(error: any): void {
+        console.error(error);
+        try {
+          console.error(error);
+          if (error.status !== 400 && error.status !== 401 && error.status !== 403) {
+            this.alertService.showError();
+            return;
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      }
 
 }
